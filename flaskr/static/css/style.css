@@ -1,60 +1,46 @@
-/* Contenedor central */
-.card-container {
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Container for search bar and cards */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column; /* Ensure search bar and columns are stacked */
+    flex-direction: column;
     gap: 20px;
-}
-
-/* Two-column setup */
-.columns {
-    display: flex;
-    gap: 20px;
-}
-
-.left-column, .right-column {
-    flex: 1; /* Ensure both columns take up equal space */
-}
-
-/* Cards */
-.service-card, .risk-box, .password-section {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Search bar styling */
 .search-bar {
+    position: relative;
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto; /* Center the search bar */
 }
 
 .search-bar input {
     width: 100%;
-    max-width: 600px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Search bar styling */
-.search-bar {
-    position: relative; /* Ensure suggestions are placed relative to this container */
-    display: flex;
-    flex-direction: column; /* Stack the input and suggestions vertically */
-    max-width: 600px;
-    margin: 0 auto; /* Center the search bar */
-}
-
 /* Suggestions List */
 .suggestions-list {
     position: absolute;
-    top: 100%; /* Position it below the search input */
+    top: 100%; /* Place below the input */
     left: 0;
     background-color: white;
     border: 1px solid #ddd;
@@ -77,42 +63,70 @@
     background-color: #f9f9f9;
 }
 
-/* Global Risk */
-.global-risk-graph {
-    height: 150px;
+/* Card Container */
+.card-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f9;
-    border: 2px solid #ccc;
+    flex-direction: column; /* Stack the search bar and columns */
+    gap: 20px;
+}
+
+/* Columns Layout */
+.columns {
+    display: flex;
+    gap: 20px;
+}
+
+.left-column, .right-column {
+    flex: 1; /* Ensure two columns take equal width */
+}
+
+/* Card Styling */
+.service-card, .risk-box, .password-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.color-indicator {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
+/* Indicators Styling */
 .indicator {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     display: inline-block;
+    margin-left: 10px; /* Add spacing between number and indicator */
 }
 
-.indicator.orange {
-    background-color: orange !important;
+/* Indicator Colors (Default) */
+#riskOfDataExposureIndicator,
+#serviceRiskIndicator,
+#userRiskIndicator {
+    background-color: gray; /* Default color if no risk is calculated */
 }
 
-.indicator.green {
-    background-color: green !important;
+/* Global Risk Indicator */
+#globalRiskColor {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    background-color: gray; /* Default global risk color */
 }
 
 .indicator.red {
-    background-color: red !important;
+    background-color: red;
 }
 
-.color-indicator.blue {
+.indicator.orange {
+    background-color: orange;
+}
+
+.indicator.green {
+    background-color: green;
+}
+
+.indicator.blue {
     background-color: blue;
 }

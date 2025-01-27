@@ -3,55 +3,57 @@
 {% block content %}
 <h1>Password Risk-Meter</h1>
 
-<div class="card-container">
-    <!-- Search bar -->
+<div class="container">
+    <!-- Search bar at the top of the container -->
     <div class="search-bar">
         <input type="text" placeholder="Search service..." id="searchInput">
         <div id="suggestions" class="suggestions-list"></div>
     </div>
 
-    <!-- Two-column layout -->
-    <div class="columns">
-        <div class="left-column">
-            <div class="service-card" id="serviceCard">
-                <h2>Service</h2>
-                <p>Select a service to view its details</p>
-            </div>
-        </div>
-        <div class="right-column">
-
-                <!-- Global Risk -->
+    <!-- Two-column setup -->
+    <div class="card-container">
+        <div class="columns">
+            <!-- Left Column -->
+            <div class="left-column">
+                <div class="service-card" id="serviceCard">
+                    <h2>Service</h2>
+                    <p>Select a service to view its details</p>
+                </div>
                 <div class="service-card">
-                    <h2>Global Risk</h2>
-                    <div class="global-risk-graph">
-                        <div class="color-indicator red"></div>
+                    <div class="global-risk">
+                        <h3>Global Risk</h3>
+                        <div class="global-risk-value">
+                            <span id="globalRisk">0</span>
+                        </div>
+                        <div class="color-indicator" id="globalRiskColor"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Columna derecha -->
+
+            <!-- Right Column -->
             <div class="right-column">
-                <!-- Indicadores de riesgo -->
                 <div class="risk-box">
                     <h2>Risk Indicators</h2>
                     <div class="indicator-item">
                         <span>Risk of Data Exposure</span>
-                        <div class="indicator red"></div>
+                        <span class="risk-number" id="riskOfDataExposure">0</span>
+                        <div class="indicator" id="riskOfDataExposureIndicator"></div>
                     </div>
                     <div class="indicator-item">
                         <span>User Login Protection</span>
-                        <div class="indicator orange"></div>
+                        <span class="risk-number" id="serviceRisk">0</span>
+                        <div class="indicator" id="serviceRiskIndicator"></div>
                     </div>
                     <div class="indicator-item">
-                        <span>User user choices</span>
-                        <div class="indicator green"></div>
+                        <span>User Choices</span>
+                        <span class="risk-number" id="userRisk">0</span>
+                        <div class="indicator" id="userRiskIndicator">
                     </div>
                 </div>
 
-                <!-- Opciones de usuario -->
                 <div class="password-section">
                     <h2>User's Choices</h2>
-                    <div class="indicator blue"></div>
                     <label for="password">Enter Password:</label>
                     <input type="text" id="password" oninput="evaluatePassword()" placeholder="Type your password here">
                     <p id="passwordScore"></p>
@@ -61,7 +63,7 @@
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="more_than_3">More than 3</option>
+                        <option value="10">More than 3</option>
                     </select>
                 </div>
             </div>
@@ -70,6 +72,7 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/zxcvbn.js') }}"></script>
-<script src="{{ url_for('static', filename='js/search.js') }}"></script>
 <script src="{{ url_for('static', filename='js/passwordStrengthChecker.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="{{ url_for('static', filename='js/userRisk.js') }}"></script>
 {% endblock %}

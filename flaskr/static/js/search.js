@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const suggestionsContainer = document.getElementById('suggestions');
     const serviceCard = document.getElementById('serviceCard');
+    const riskOfDataExposureElement = document.getElementById('riskOfDataExposure');
+    const serviceRiskElement = document.getElementById('serviceRisk');
 
     searchInput.addEventListener('input', () => {
         const query = searchInput.value;
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error("Error fetching services:", error));
     });
 
-    // Function to display service details in the card
+    // Function to display service details in the card and update risk numbers
     function showServiceDetails(service) {
         serviceCard.innerHTML = `
             <h2>${service.Website}</h2>
@@ -47,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>Min Length: ${service['min length']}</p>
             <p>Extra Security: ${service['extra sec']}</p>
             <p>2FA: ${service['2fa']}</p>
-            <!-- Add other fields as needed -->
         `;
+
+        // Update Risk of Data Exposure and Service Risk values
+        riskOfDataExposureElement.textContent = service['Dexp'].toFixed(2); // Format to 2 decimals
+        serviceRiskElement.textContent = service['Service Risk'].toFixed(2); // Format to 2 decimals
     }
 });
