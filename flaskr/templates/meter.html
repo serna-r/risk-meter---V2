@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Risk-Meter</h1>
+
+<div class="container">
+    <!-- Search bar at the top of the container -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+
+    <!-- Contenedor central para las tarjetas -->
+    <div class="card-container">
+        <div class="columns">
+            <!-- Columna izquierda -->
+            <div class="left-column">
+                <!-- Cards de servicios -->
+                <div class="service-card">
+                    <h2>Service</h2>
+                    <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                </div>
+
+                <!-- Global Risk -->
+                <div class="service-card">
+                    <h2>Global Risk</h2>
+                    <div class="global-risk-graph">
+                        <div class="color-indicator red"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="right-column">
+                <!-- Indicadores de riesgo -->
+                <div class="risk-box">
+                    <h2>Risk Indicators</h2>
+                    <div class="indicator-item">
+                        <span>Risk of Data Exposure</span>
+                        <div class="indicator red"></div>
+                    </div>
+                    <div class="indicator-item">
+                        <span>User Login Protection</span>
+                        <div class="indicator orange"></div>
+                    </div>
+                    <div class="indicator-item">
+                        <span>User user choices</span>
+                        <div class="indicator green"></div>
+                    </div>
+                </div>
+
+                <!-- Opciones de usuario -->
+                <div class="password-section">
+                    <h2>User's Choices</h2>
+                    <div class="indicator blue"></div>
+                    <label for="password">Enter Password:</label>
+                    <input type="text" id="password" oninput="evaluatePassword()" placeholder="Type your password here">
+                    <p id="passwordScore"></p>
+                    <label for="reuses">Chosen Password Reuses:</label>
+                    <select id="reuses">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="more_than_3">More than 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/zxcvbn.js') }}"></script>
+<script src="{{ url_for('static', filename='js/passwordStrengthChecker.js') }}" defer></script>
+{% endblock %}
