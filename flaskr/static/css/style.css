@@ -3,8 +3,27 @@
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Ensure search bar and columns are stacked */
     gap: 20px;
+}
+
+/* Two-column setup */
+.columns {
+    display: flex;
+    gap: 20px;
+}
+
+.left-column, .right-column {
+    flex: 1; /* Ensure both columns take up equal space */
+}
+
+/* Cards */
+.service-card, .risk-box, .password-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Search bar styling */
@@ -23,23 +42,39 @@
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.columns {
+/* Search bar styling */
+.search-bar {
+    position: relative; /* Ensure suggestions are placed relative to this container */
     display: flex;
-    gap: 20px;
-    width: 100%;
+    flex-direction: column; /* Stack the input and suggestions vertically */
+    max-width: 600px;
+    margin: 0 auto; /* Center the search bar */
 }
 
-.left-column, .right-column {
-    flex: 1;
-}
-
-/* Cards */
-.service-card, .risk-box, .password-section {
-    background-color: #fff;
+/* Suggestions List */
+.suggestions-list {
+    position: absolute;
+    top: 100%; /* Position it below the search input */
+    left: 0;
+    background-color: white;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
+    width: 100%; /* Match the width of the search input */
+    z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:hover {
+    background-color: #f9f9f9;
 }
 
 /* Global Risk */
