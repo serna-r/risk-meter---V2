@@ -8,12 +8,16 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Ruta al archivo Excel
-EXCEL_FILE = os.path.join('flaskr', 'static', 'service_risk_calculation.xlsx')
+EXCEL_FILE = os.path.join('flaskr', 'static', 'services.xlsx')
 
 def load_services():
     try:
         # Load the Services sheet
         services_df = pd.read_excel(EXCEL_FILE, sheet_name="Services").fillna(0)  # Replace NaN values with 0
+
+         # Capitalize the 'Website' column
+        if 'Website' in services_df.columns:
+            services_df['Website'] = services_df['Website'].astype(str).str.capitalize()
 
         # Load the Privacy values median sheet
         privacy_values_df = pd.read_excel(EXCEL_FILE, sheet_name="Privacy values median", index_col=0)
@@ -82,4 +86,10 @@ def search_services():
 def index():
     return render_template('meter.html')
 
+@app.route('/simple')
+def simple():
+    return render_template('meter.html', show_risk_indicators=False, spacer_size="270px")
 
+@app.route('/extra')
+def extra_info():
+    return render_template('meter.html', show_risk_indicators=True, spacer_size="170px")

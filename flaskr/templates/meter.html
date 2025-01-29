@@ -33,33 +33,39 @@
 
             <!-- Right Column -->
             <div class="right-column">
+                 <!-- Conditionally render Risk Indicators -->
+                 {% if show_risk_indicators %}
                 <div class="risk-box">
                     <h2>Risk Indicators</h2>
                     <div class="indicator-item">
                         <span>Risk of Data Exposure</span>
                         <span class="risk-number" id="riskOfDataExposure">0</span>
                         <div class="indicator" id="riskOfDataExposureIndicator"></div>
+                        <div><p  class="explanation-text">The risk of your private data being leaked in the internet</p></div>
                     </div>
                     <div class="indicator-item">
                         <span>User Login Protection</span>
                         <span class="risk-number" id="serviceRisk">0</span>
                         <div class="indicator" id="serviceRiskIndicator"></div>
+                        <div><p  class="explanation-text">The protection provided by the service</p></div>                         
                     </div>
                     <div class="indicator-item">
-                        <span>User Choices</span>
+                        <span>Users' Choices</span>
                         <span class="risk-number" id="userRisk">0</span>
-                        <div class="indicator" id="userRiskIndicator">
+                        <div class="indicator" id="userRiskIndicator"></div>
+                        <div><p class="explanation-text">The security that your password will have against an attack</p></div>
                     </div>
                 </div>
+                {% endif %}
 
                 <div class="password-section">
                     <h2>User's Choices</h2>
                     <label for="password">Enter Password:</label>
                     <input type="text" id="password" oninput="evaluatePassword()" placeholder="Type your password here">
+                    <p id="passwordCompositionReq"></p>
                     <p id="passwordScore"></p>
-                    <label for="reuses">Chosen Password Reuses:</label>
+                    <label for="reuses">Chosen Password uses:</label>
                     <select id="reuses">
-                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -74,5 +80,5 @@
 <script src="{{ url_for('static', filename='js/zxcvbn.js') }}"></script>
 <script src="{{ url_for('static', filename='js/passwordStrengthChecker.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/search.js') }}"></script>
-<script src="{{ url_for('static', filename='js/userRisk.js') }}"></script>
+<script src="{{ url_for('static', filename='js/riskCalculation.js') }}"></script>
 {% endblock %}

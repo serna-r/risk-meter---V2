@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const serviceCard = document.getElementById('serviceCard');
     const riskOfDataExposureElement = document.getElementById('riskOfDataExposure');
     const serviceRiskElement = document.getElementById('serviceRisk');
+    const passwordCompositionReq = document.getElementById('passwordCompositionReq');
 
     searchInput.addEventListener('input', () => {
         const query = searchInput.value;
@@ -43,16 +44,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display service details in the card and update risk numbers
     function showServiceDetails(service) {
+            // Function to map min mask shorthand to full words
+        function formatMinMask(minMask) {
+            const maskMap = {
+                l: 'lowercase',
+                u: 'uppercase',
+                d: 'decimal',
+                s: 'special'
+            };
+
+            // Map each character in minMask to its full word
+            return minMask
+                .split('') // Split the shorthand into individual characters
+                .map(char => maskMap[char] || char) // Replace with full word or leave as is if not in the map
+                .join(', '); // Join the full words with commas
+        }
+
+        // Format min mask using the helper function
+        const formattedMinMask = formatMinMask(service['min mask']);
+
         serviceCard.innerHTML = `
             <h2>${service.Website}</h2>
             <p>Type: ${service.Type}</p>
-            <p>Min Length: ${service['min length']}</p>
-            <p>Extra Security: ${service['extra sec']}</p>
             <p>2FA: ${service['2fa']}</p>
         `;
 
-        // Update Risk of Data Exposure and Service Risk values
-        riskOfDataExposureElement.textContent = service['Dexp'].toFixed(2); // Format to 2 decimals
-        serviceRiskElement.textContent = service['Service Risk'].toFixed(2); // Format to 2 decimals
+        passwordCompositionReq.innerHTML = `
+        <p>Minimum Length: ${service['min length']}</p>
+        <p>Minimum characters: ${formattedMinMask}</p>
+        <p>Blocklist policy: ${service['extra sec'] === 1 ? "Yes" : "No"}</p>
+        <p  class="explanation-text">The service has a blacklist for common passwords</p>
+        `
+
+        // Update Risk of Data Exposure and Service Risk values in the DOM (if elements exist)
+        if (riskOfDataExposureElement) {
+            riskOfDataExposureElement.textContent = service['Dexp'].toFixed(2);
+        }
+        if (serviceRiskElement) {
+            serviceRiskElement.textContent = service['Service Risk'].toFixed(2);
+        }
+
+        // Store service data in the session
+        sessionStorage.setItem('selectedService', JSON.stringify(service));
+
+        // Recalculate risks
+        calculateAndUpdateRisks();
     }
 });

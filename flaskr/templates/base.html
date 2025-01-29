@@ -9,10 +9,28 @@
         {% else %}
         <title>Risk-meter</title>
         {% endif %}
+        <style>
+            .spacer {
+                height: {% if spacer_size %}{{ spacer_size }}{% else %}50px{% endif %};
+            }
+        </style>
     </head>
     <body>
+        <!-- Top banner -->
+        <div class="top-banner">
+            <img src="{{ url_for('static', filename='images/incibe/top-banner.jpg') }}" alt="Top Banner">
+        </div>
+
         <main id="main-div">
             {% block content %}{% endblock %}
         </main>
+
+        <!-- Spacer to push the bottom banner -->
+        <div class="spacer"></div>
+
+        <!-- Bottom banner -->
+        <div class="bottom-banner">
+            <img src="{{ url_for('static', filename='images/incibe/bottom-banner.jpg') }}" alt="Bottom Banner">
+        </div>
     </body>
 </html>

@@ -11,6 +11,12 @@ h1 {
     color: #333;
 }
 
+/* Explanatory text */
+p.explanation-text{
+    color: #5a5a5a;
+    font-size: 70%;
+}
+
 /* Container for search bar and cards */
 .container {
     max-width: 1200px;
@@ -129,4 +135,20 @@ h1 {
 
 .indicator.blue {
     background-color: blue;
+}
+
+/* Bandas superiores e inferiores */
+.top-banner, .bottom-banner {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.top-banner img, .bottom-banner img {
+    /*width: 100%;  Asegura que la imagen ocupe el ancho completo */
+    max-height: 70px; /* Altura máxima para las bandas */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+}
+
+.bottom-banner {
+    margin-top: auto; /* Push it to the bottom */
 }
