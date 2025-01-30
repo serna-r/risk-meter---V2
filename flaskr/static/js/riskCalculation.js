@@ -83,10 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Retrieve service data from the session if necessary
         const storedService = JSON.parse(sessionStorage.getItem('selectedService')) || {};
+
         const riskOfDataExposure = riskOfDataExposureElement
             ? parseFloat(riskOfDataExposureElement.textContent)
             : storedService['Dexp'] || DEFAULT_DATA_EXPOSURE_RISK;
-    
+        
         const serviceRisk = serviceRiskElement
             ? parseFloat(serviceRiskElement.textContent)
             : storedService['Service Risk'] || DEFAULT_SERVICE_RISK;
@@ -108,7 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const globalRisk = calculateGlobalRisk(riskOfDataExposure, serviceRisk, userRisk);
     
         // Update Global Risk display and color
-        globalRiskElement.textContent = globalRisk.toFixed(2);
+        if(globalRiskElement){
+            globalRiskElement.textContent = globalRisk.toFixed(2);
+        }
+        
         updateGlobalRiskColor(globalRisk);
 
     }

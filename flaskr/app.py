@@ -84,12 +84,12 @@ def search_services():
 
 @app.route('/')
 def index():
-    return render_template('meter.html')
+    return render_template('meter.html', show_risk_indicators=False, spacer_size="50px")
 
 @app.route('/simple')
 def simple():
-    return render_template('meter.html', show_risk_indicators=False, spacer_size="270px")
+    return render_template('meter.html', show_risk_indicators=False, spacer_size="50px")
 
 @app.route('/extra')
 def extra_info():
-    return render_template('meter.html', show_risk_indicators=True, spacer_size="170px")
+    return render_template('meter.html', show_risk_indicators=True, spacer_size="50px")

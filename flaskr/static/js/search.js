@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Function to map min mask shorthand to full words
         function formatMinMask(minMask) {
             const maskMap = {
-                l: 'lowercase',
-                u: 'uppercase',
-                d: 'decimal',
-                s: 'special'
+                l: 'one lowercase character',
+                u: 'one uppercase character',
+                d: 'one decimal character',
+                s: 'one special character'
             };
 
             // Map each character in minMask to its full word
@@ -65,16 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         serviceCard.innerHTML = `
             <h2>${service.Website}</h2>
-            <p>Type: ${service.Type}</p>
-            <p>2FA: ${service['2fa']}</p>
+            <p>Description: ${service.Type}.
+            The service ${service['2fa'] == 1 ? "provides two-factor authentication." : "does not provide two-factor authentication."}
+            </p>
         `;
+        
 
         passwordCompositionReq.innerHTML = `
-        <p>Minimum Length: ${service['min length']}</p>
-        <p>Minimum characters: ${formattedMinMask}</p>
-        <p>Blocklist policy: ${service['extra sec'] === 1 ? "Yes" : "No"}</p>
-        <p  class="explanation-text">The service has a blacklist for common passwords</p>
+        <p>Minimum Length: you need at least ${service['min length']} characters</p>
+        <p>Minimum characters: you need at least ${formattedMinMask}</p>
         `
+        // <p>Blocklist policy: ${service['extra sec'] === 1 ? "Yes" : "No"}</p>
+        // <p  class="explanation-text">The service has a blacklist for common passwords</p>
+        
 
         // Update Risk of Data Exposure and Service Risk values in the DOM (if elements exist)
         if (riskOfDataExposureElement) {
