@@ -21,21 +21,39 @@
         <div id="suggestions" class="suggestions-list"></div>
     </div>
 
-    <!-- Two-column setup -->
-    <div class="card-container">
+   <!-- Two-column setup -->
+    <div class="row">
+        <div class="column">
+            <div class="card service-card" id="serviceCard">
+                <h2 id="service-title">Service</h2>
+                <div id="details">
+                    <p>Select a service to view its details</p>
 
-        <div class="service-card" id="serviceCard">
-            <h2>Service</h2>
-            <p>Select a service to view its details</p>
+                    <p id="risk-data-exp">
+                        <strong>Risk of Data Exposure:</strong> 
+                        <span class="tooltip-icon" data-tooltip="The risk of your private data being leaked on the internet">?</span>
+                    </p>
+
+                    <p id="user-login-protection">
+                        <strong>User Login Protection:</strong>
+                        <span class="tooltip-icon" data-tooltip="The protection provided by the service">?</span>
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <div class="service-card">
-            <div class="password-section">
-                <h2>User's Choices</h2>
+        <div class="column">
+            <div class="card user-card" id="userCard">
+                <h2>
+                    User's Choices 
+                    <span class="tooltip-icon" data-tooltip="The security that your password will have against an attack">?</span>
+                </h2>
+
                 <label for="password">Enter Password:</label>
                 <input type="text" id="password" oninput="evaluatePassword()" placeholder="Type your password here">
                 <p id="passwordCompositionReq"></p>
                 <p id="passwordScore"></p>
+
                 <label for="reuses">Chosen Password uses:</label>
                 <select id="reuses">
                     <option value="1">1</option>
@@ -45,66 +63,67 @@
                 </select>
             </div>
         </div>
+    </div>
+    
+    <div class="row">
 
-        <!-- Risk Indicator Legend -->
-        <div class="service-card">
-            <h2>Risk Indicator Legend</h2>
-            <div class="legend-item">
-                <span class="legend-circle" style="background-color: green;"></span> Very small risk
-            </div>
-            <div class="legend-item">
-                <span class="legend-circle" style="background-color: yellow;"></span> Small risk
-            </div>
-            <div class="legend-item">
-                <span class="legend-circle" style="background-color: orange;"></span> Big risk
-            </div>
-            <div class="legend-item">
-                <span class="legend-circle" style="background-color: red;"></span> Very big risk
-            </div>
-        </div>
-
-        <!-- Conditionally render Risk Indicators -->
-        {% if show_risk_indicators %}
-        <div class="service-card">
-            <div class="risk-box">
+        <!-- Risk Indicators -->
+        <div class="column">
+            <div class="card risk-indicators">
                 <h2>Risk Indicators</h2>
                 <div class="indicator-item">
                     <span>Risk of Data Exposure</span>
                     <!-- <span class="risk-number" id="riskOfDataExposure">0</span> -->
                     <div class="indicator" id="riskOfDataExposureIndicator"></div>
-                    <div><p  class="explanation-text">The risk of your private data being leaked in the internet</p></div>
                 </div>
                 <div class="indicator-item">
                     <span>User Login Protection</span>
                     <!-- <span class="risk-number" id="serviceRisk">0</span> -->
-                    <div class="indicator" id="serviceRiskIndicator"></div>
-                    <div><p  class="explanation-text">The protection provided by the service</p></div>                         
+                    <div class="indicator" id="serviceRiskIndicator"></div>                       
                 </div>
                 <div class="indicator-item">
                     <span>Users' Choices</span>
                     <!-- <span class="risk-number" id="userRisk">0</span> -->
                     <div class="indicator" id="userRiskIndicator"></div>
-                    <div><p class="explanation-text">The security that your password will have against an attack</p></div>
                 </div>
             </div>
         </div>
-        {% endif %}
 
-        <div class="service-card">
-            <div class="global-risk">
+        <div class="column">
+            <div class="card global-risk">
                 <h3>Global Risk</h3>
-                <div class="global-risk-value">
-                    <!-- <span id="globalRisk">0</span> -->
+                <div class="global-risk-container">
+                    <div class="global-risk-bar">
+                        <div class="risk-fill" id="globalRiskBar"></div>
+                    </div>
                 </div>
-                <div class="color-indicator" id="globalRiskColor"></div>
             </div>
         </div>
+        
 
-        <div class="data-privacy-notice">
-            <p>
-                All data entered by the user is processed locally and <strong>no data is collected or stored.</strong>
-            </p>
+        <!-- Risk Indicator Legend -->
+        <div class="column">
+            <div class="card legend">
+                <h2>Risk Indicator Legend</h2>
+                <div class="legend-item">
+                    <span class="legend-circle" style="background-color: green;"></span> Very small risk
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle" style="background-color: yellow;"></span> Small risk
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle" style="background-color: orange;"></span> Big risk
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle" style="background-color: red;"></span> Very big risk
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="data-privacy-notice">
+        <p>
+            All data entered by the user is processed locally and <strong>no data is collected or stored.</strong>
+        </p>
     </div>
 </div>
 

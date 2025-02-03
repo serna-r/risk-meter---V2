@@ -3,12 +3,25 @@ import pandas as pd
 from flask import Flask, request, jsonify, render_template
 from config import Config
 import numpy as np
+import json
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 # Ruta al archivo Excel
 EXCEL_FILE = os.path.join('flaskr', 'static', 'services.xlsx')
+# Norma de frobenius de matriz de riesgo
+FROBENIUS_RISK_MATRIX = 533
+
+def load_translation(lang):
+    translation_path = os.path.join("flaskr", "json", "translations", f"{lang}.json")
+    
+    if os.path.exists(translation_path):  # Check if file exists
+        with open(translation_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+    else:
+        return load_translation("en")  # Fallback to English if not found
+
 
 def load_services():
     try:
@@ -33,7 +46,7 @@ def load_services():
 
         # Calculate Dexp for each service with the updated formula
         risks_sum = risks_df.sum(axis=1)  # Sum of calculated risks for each service
-        Dexp_values = 1+ (((np.sqrt(risks_sum ** 2)) - 1) * 19) / ((17 * 7 * 7) - 1)
+        Dexp_values = 1+ (((np.sqrt(risks_sum ** 2)) - 1) * 19) / ((FROBENIUS_RISK_MATRIX) - 1)
 
         # Add the calculated risks and Dexp to the services DataFrame
         services_df["Calculated Risks"] = risks_df.to_dict(orient="records")  # Convert risks to a list of dicts
@@ -84,12 +97,7 @@ def search_services():
 
 @app.route('/')
 def index():
-    return render_template('meter.html', show_risk_indicators=False, spacer_size="50px")
-
-@app.route('/simple')
-def simple():
-    return render_template('meter.html', show_risk_indicators=False, spacer_size="50px")
-
-@app.route('/extra')
-def extra_info():
-    return render_template('meter.html', show_risk_indicators=True, spacer_size="50px")
+    lang = request.args.get('lang', 'en')  # Get lang parameter, default to 'en'
+    texts = load_translation(lang)
+    
+    return render_template('meter.html', lang=lang, texts=texts)

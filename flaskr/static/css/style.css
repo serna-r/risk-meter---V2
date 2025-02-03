@@ -12,12 +12,12 @@ h1 {
 }
 
 /* Explanatory text */
-p.explanation-text{
+p.explanation-text {
     color: #5a5a5a;
     font-size: 70%;
 }
 
-/* Container for search bar and cards */
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -26,13 +26,37 @@ p.explanation-text{
     gap: 20px;
 }
 
-/* Search bar styling */
+.spacer {
+    height: {% if spacer_size %}{{ spacer_size }}{% else %}50px{% endif %};
+}
+
+/* Language Switcher Button */
+.lang-switcher {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: 1px solid #007BFF;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #007BFF;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.lang-switcher:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Search Bar */
 .search-bar {
     position: relative;
     display: flex;
     flex-direction: column;
     max-width: 600px;
-    margin: 0 auto; /* Center the search bar */
+    margin: 0 auto;
 }
 
 .search-bar input {
@@ -46,11 +70,11 @@ p.explanation-text{
 /* Suggestions List */
 .suggestions-list {
     position: absolute;
-    top: 100%; /* Place below the input */
+    top: 100%;
     left: 0;
     background-color: white;
     border: 1px solid #ddd;
-    width: 100%; /* Match the width of the search input */
+    width: 100%;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-height: 200px;
@@ -69,75 +93,129 @@ p.explanation-text{
     background-color: #f9f9f9;
 }
 
-/* Card Container */
-.card-container {
-    display: flex;
-    flex-direction: column; /* Stack the search bar and columns */
-    gap: 20px;
-}
-
 /* Columns Layout */
-.columns {
+.row {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.left-column, .right-column {
-    flex: 1; /* Ensure two columns take equal width */
+/* Columns */
+.column {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
 }
 
-/* Card Styling */
-.service-card, .risk-box, .password-section {
+/* Cards */
+.card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-/* Indicators Styling */
+/* Service and User Cards */
+.service-card, .risk-box, .password-section {
+    background-color: #fff; /* Ensures consistent background */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0; /* Remove any unnecessary margins */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip Icon */
+.tooltip-icon {
+    display: inline-block;
+    margin-left: 5px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Tooltip Text (Hidden by Default) */
+.tooltip-icon::after {
+    content: attr(data-tooltip); /* Gets text from data-tooltip attribute */
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show Tooltip on Hover */
+.tooltip-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Indicators */
 .indicator {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     display: inline-block;
-    margin-left: 10px; /* Add spacing between number and indicator */
+    margin-left: 10px;
 }
 
-/* Indicator Colors (Default) */
+/* Risk Indicators */
 #riskOfDataExposureIndicator,
 #serviceRiskIndicator,
 #userRiskIndicator {
-    background-color: gray; /* Default color if no risk is calculated */
+    background-color: gray;
 }
 
-/* Global Risk Indicator */
-#globalRiskColor {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 10px;
-    background-color: gray; /* Default global risk color */
+/* Global Risk Bar Container */
+.global-risk-container {
+    text-align: center;
+    padding: 10px;
 }
 
-.indicator.red {
-    background-color: red;
+/* Bar Background */
+.global-risk-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
-.indicator.orange {
-    background-color: orange;
+/* Bar Fill (Changes Color Dynamically) */
+.risk-fill {
+    height: 100%;
+    width: 0%; /* Default Empty */
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
 }
 
-.indicator.green {
-    background-color: green;
-}
+/* Risk Levels */
+.risk-fill.green { background-color: green; }
+.risk-fill.yellow { background-color: yellow; }
+.risk-fill.orange { background-color: orange; }
+.risk-fill.red { background-color: red; }
 
-.indicator.blue {
-    background-color: blue;
-}
-
-/* Legend Card Styling */
+/* Legend Styling */
 .legend-item {
     display: flex;
     align-items: center;
@@ -153,28 +231,10 @@ p.explanation-text{
     display: inline-block;
 }
 
-/* Ensure the service cards have a uniform style */
-.service-card {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Extra spacing for readability */
-.service-card h2 {
-    margin-bottom: 10px;
-}
-
-/* Make the legend visually clear */
-.service-card .legend-item span {
-    font-weight: bold;
-}
-
+/* Research Information */
 .research-info {
-    background-color: #eef6ff; /* Light blue background for emphasis */
-    border-left: 4px solid #007BFF; /* Blue accent line */
+    background-color: #eef6ff;
+    border-left: 4px solid #007BFF;
     padding: 15px;
     margin: 15px 0;
     font-size: 14px;
@@ -189,11 +249,12 @@ p.explanation-text{
 }
 
 .research-info strong {
-    color: #0056b3; /* Slightly darker blue for emphasis */
+    color: #0056b3;
 }
 
+/* Data Privacy Notice */
 .data-privacy-notice {
-    background-color: #f8f9fa; /* Light gray background for subtle emphasis */
+    background-color: #f8f9fa;
     text-align: center;
     padding: 10px;
     margin-top: 20px;
@@ -209,22 +270,32 @@ p.explanation-text{
 }
 
 .data-privacy-notice strong {
-    color: #d9534f; /* Slightly red tone to highlight the "no data collected" part */
+    color: #d9534f;
 }
 
-
-/* Bandas superiores e inferiores */
+/* Top and Bottom Banners */
 .top-banner, .bottom-banner {
     text-align: center;
     margin: 0 auto;
 }
 
 .top-banner img, .bottom-banner img {
-    /*width: 100%;  Asegura que la imagen ocupe el ancho completo */
-    max-height: 70px; /* Altura máxima para las bandas */
-    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    max-height: 70px;
+    object-fit: cover;
 }
 
 .bottom-banner {
-    margin-top: auto; /* Push it to the bottom */
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column {
+        width: 100%;
+    }
 }

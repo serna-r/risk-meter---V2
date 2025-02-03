@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 suggestionsContainer.innerHTML = '';
 
                 if (data.length === 0) {
-                    suggestionsContainer.innerHTML = '<p>No services found</p>';
+                    suggestionsContainer.innerHTML = '<p>No se encontraron servicios</p>';
                     return;
                 }
 
@@ -29,57 +29,66 @@ document.addEventListener('DOMContentLoaded', () => {
                     suggestion.className = 'suggestion-item';
                     suggestion.textContent = service.Website;
 
-                    // Add click event to select a service
+                    // Agregar evento de clic para seleccionar un servicio
                     suggestion.addEventListener('click', () => {
-                        searchInput.value = service.Website; // Set input value
-                        suggestionsContainer.innerHTML = ''; // Clear suggestions
-                        showServiceDetails(service); // Show selected service details
+                        searchInput.value = service.Website; // Establecer valor de entrada
+                        suggestionsContainer.innerHTML = ''; // Limpiar sugerencias
+                        showServiceDetails(service); // Mostrar detalles del servicio seleccionado
                     });
 
                     suggestionsContainer.appendChild(suggestion);
                 });
             })
-            .catch(error => console.error("Error fetching services:", error));
+            .catch(error => console.error("Error al obtener servicios:", error));
     });
 
-    // Function to display service details in the card and update risk numbers
+    // Función para mostrar detalles del servicio en la tarjeta y actualizar los valores de riesgo
     function showServiceDetails(service) {
-            // Function to map min mask shorthand to full words
+            // Función para mapear el formato de máscara mínima a palabras completas
         function formatMinMask(minMask) {
             const maskMap = {
-                l: 'one lowercase character',
-                u: 'one uppercase character',
-                d: 'one decimal character',
-                s: 'one special character'
+                l: 'una letra minúscula',
+                u: 'una letra mayúscula',
+                d: 'un número decimal',
+                s: 'un carácter especial'
             };
 
-            // Map each character in minMask to its full word
+            // Mapear cada carácter de minMask a su palabra completa
             return minMask
-                .split('') // Split the shorthand into individual characters
-                .map(char => maskMap[char] || char) // Replace with full word or leave as is if not in the map
-                .join(', '); // Join the full words with commas
+                .split('') // Dividir la máscara en caracteres individuales
+                .map(char => maskMap[char] || char) // Reemplazar con la palabra completa o dejarlo igual si no está en el mapa
+                .join(', '); // Unir las palabras completas con comas
         }
 
-        // Format min mask using the helper function
+        // Formatear la máscara mínima usando la función auxiliar
         const formattedMinMask = formatMinMask(service['min mask']);
 
         serviceCard.innerHTML = `
-            <h2>${service.Website}</h2>
-            <p>Description: ${service.Type}.
-            The service ${service['2fa'] == 1 ? "provides two-factor authentication." : "does not provide two-factor authentication."}
-            </p>
+        <h2 id="service-title">${service.Website}</h2>
+            <div id="details">
+                <p id="risk-data-exp">
+                    <strong>Riesgo de exposición de datos:</strong>  
+                    <span class="tooltip-icon" data-tooltip="El riesgo de que sus datos privados sean filtrados en internet">?</span>
+                </p>
+                <p class="service-info">${service.Type}</p>
+
+                <p id="user-login-protection">
+                    <strong>Protección de inicio de sesión:</strong> 
+                    <span class="tooltip-icon" data-tooltip="La protección proporcionada por el servicio">?</span>
+                </p>
+                <p class="service-info">El servicio ${service['2fa'] == 1 ? "proporciona autenticación de dos factores." : "no proporciona autenticación de dos factores."}</p>
+            </div>
         `;
-        
 
         passwordCompositionReq.innerHTML = `
-        <p>Minimum Length: you need at least ${service['min length']} characters</p>
-        <p>Minimum characters: you need at least ${formattedMinMask}</p>
-        `
-        // <p>Blocklist policy: ${service['extra sec'] === 1 ? "Yes" : "No"}</p>
-        // <p  class="explanation-text">The service has a blacklist for common passwords</p>
-        
+        <p>Longitud mínima: necesitas al menos ${service['min length']} caracteres</p>
+        <p>Caracteres mínimos: necesitas al menos ${formattedMinMask}</p>
+        `;
 
-        // Update Risk of Data Exposure and Service Risk values in the DOM (if elements exist)
+        // <p>Política de lista de bloqueo: ${service['extra sec'] === 1 ? "Sí" : "No"}</p>
+        // <p  class="explanation-text">El servicio tiene una lista negra para contraseñas comunes</p>
+        
+        // Actualizar los valores de Riesgo de Exposición de Datos y Riesgo del Servicio en el DOM (si existen los elementos)
         if (riskOfDataExposureElement) {
             riskOfDataExposureElement.textContent = service['Dexp'].toFixed(2);
         }
@@ -87,10 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             serviceRiskElement.textContent = service['Service Risk'].toFixed(2);
         }
 
-        // Store service data in the session
+        // Almacenar datos del servicio en la sesión
         sessionStorage.setItem('selectedService', JSON.stringify(service));
 
-        // Recalculate risks
+        // Recalcular riesgos
         calculateAndUpdateRisks();
     }
 });

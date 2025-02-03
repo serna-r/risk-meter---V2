@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ lang }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +13,34 @@
             .spacer {
                 height: {% if spacer_size %}{{ spacer_size }}{% else %}50px{% endif %};
             }
+
+            /* Language Switcher Button */
+            .lang-switcher {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                background: none;
+                border: 1px solid #007BFF;
+                padding: 5px 10px;
+                cursor: pointer;
+                font-size: 14px;
+                color: #007BFF;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .lang-switcher:hover {
+                background-color: #007BFF;
+                color: white;
+            }
         </style>
     </head>
     <body>
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher" id="langSwitch">
+            {{ '🇬🇧 English' if lang == 'es' else '🇪🇸 Español' }}
+        </button>
+
         <!-- Top banner -->
         <div class="top-banner">
             <img src="{{ url_for('static', filename='images/incibe/top-banner.jpg') }}" alt="Top Banner">
@@ -32,5 +57,16 @@
         <div class="bottom-banner">
             <img src="{{ url_for('static', filename='images/incibe/bottom-banner.jpg') }}" alt="Bottom Banner">
         </div>
+
+        <script>
+            document.getElementById("langSwitch").addEventListener("click", function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const currentLang = urlParams.get("lang") || "en";
+                const newLang = currentLang === "en" ? "es" : "en";
+
+                urlParams.set("lang", newLang);
+                window.location.search = urlParams.toString();
+            });
+        </script>
     </body>
 </html>

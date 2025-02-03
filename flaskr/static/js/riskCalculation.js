@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const userRiskIndicator = document.getElementById('userRiskIndicator'); // User Risk Indicator
 
     // Define thresholds for each risk type
-    const topglobalriskvalue = 65;
-    const topvalueRD = 13;
+    const topglobalriskvalue = 50;
+    const topvalueRD = 10;
     const topvalueOtherRisks = 2;
 
     // Default values for risks (used when elements are missing in the DOM)
@@ -113,30 +113,32 @@ document.addEventListener('DOMContentLoaded', () => {
             globalRiskElement.textContent = globalRisk.toFixed(2);
         }
         
-        updateGlobalRiskColor(globalRisk);
+        updateGlobalRiskBar(globalRisk);
 
     }
     
 
-    // Function to update the color of the Global Risk indicator
-    function updateGlobalRiskColor(globalRisk) {
-        const thresholds = {
-            green: topglobalriskvalue * 0.25,
-            yellow: topglobalriskvalue * 0.5,
-            orange: topglobalriskvalue * 0.75,
-        };
-
-        if (globalRisk < thresholds.green) {
-            globalRiskColor.style.backgroundColor = 'green';
-        } else if (globalRisk < thresholds.yellow) {
-            globalRiskColor.style.backgroundColor = 'yellow';
-        } else if (globalRisk < thresholds.orange) {
-            globalRiskColor.style.backgroundColor = 'orange';
+    function updateGlobalRiskBar(globalRisk) {
+        const riskBar = document.getElementById("globalRiskBar");
+    
+        // Normalize risk value between 0-100 if necessary
+        let percentage = Math.min(Math.max(globalRisk, 0), 100); 
+    
+        // Determine bar width (divide into four slots)
+        if (percentage <= 25) {
+            riskBar.style.width = "25%";
+            riskBar.className = "risk-fill green";
+        } else if (percentage <= 50) {
+            riskBar.style.width = "50%";
+            riskBar.className = "risk-fill yellow";
+        } else if (percentage <= 75) {
+            riskBar.style.width = "75%";
+            riskBar.className = "risk-fill orange";
         } else {
-            globalRiskColor.style.backgroundColor = 'red';
+            riskBar.style.width = "100%";
+            riskBar.className = "risk-fill red";
         }
     }
-
     // Attach the function to the global scope
     window.calculateAndUpdateRisks = calculateAndUpdateRisks;
 
