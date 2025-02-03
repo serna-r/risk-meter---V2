@@ -9,31 +9,6 @@
         {% else %}
         <title>Risk meter</title>
         {% endif %}
-        <style>
-            .spacer {
-                height: {% if spacer_size %}{{ spacer_size }}{% else %}50px{% endif %};
-            }
-
-            /* Language Switcher Button */
-            .lang-switcher {
-                position: fixed;
-                top: 10px;
-                right: 10px;
-                background: none;
-                border: 1px solid #007BFF;
-                padding: 5px 10px;
-                cursor: pointer;
-                font-size: 14px;
-                color: #007BFF;
-                border-radius: 5px;
-                transition: all 0.3s ease;
-            }
-
-            .lang-switcher:hover {
-                background-color: #007BFF;
-                color: white;
-            }
-        </style>
     </head>
     <body>
         <!-- Language Switcher Button -->

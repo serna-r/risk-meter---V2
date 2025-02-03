@@ -1,42 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Password Risk Meter</h1>
+<h1>{{ texts['title'] }}</h1>
 
 <div class="research-info">
     <p>
-        This website, designed as part of the research project 
-        <strong>APAMCiber</strong> (Attribution and Prevention of Threats with Impact on Multiple Relevant Groups in Cybersecurity), 
-        funded by <strong>INCIBE</strong> and conducted at <strong>Universidad Carlos III de Madrid</strong>, 
-        aims to validate the password risk meter developed for the project. 
-        <strong>No personal data is collected.</strong>
+        {{ texts['research_info'] | safe }}
     </p>
 </div>
-
 
 <div class="container">
     <!-- Search bar at the top of the container -->
     <div class="search-bar">
-        <input type="text" placeholder="Search service..." id="searchInput">
+        <input type="text" placeholder="{{ texts['search_service'] }}" id="searchInput">
         <div id="suggestions" class="suggestions-list"></div>
     </div>
 
-   <!-- Two-column setup -->
+    <!-- Two-column setup -->
     <div class="row">
         <div class="column">
             <div class="card service-card" id="serviceCard">
-                <h2 id="service-title">Service</h2>
+                <h2 id="service-title">{{ texts['service'] }}</h2>
                 <div id="details">
-                    <p>Select a service to view its details</p>
+                    <p>{{ texts['select_service'] }}</p>
 
                     <p id="risk-data-exp">
-                        <strong>Risk of Data Exposure:</strong> 
-                        <span class="tooltip-icon" data-tooltip="The risk of your private data being leaked on the internet">?</span>
+                        <strong>{{ texts['risk_of_data_exposure'] }}</strong>  
+                        <span class="tooltip-icon" data-tooltip="{{ texts['tooltip_risk_of_data_exposure'] }}">?</span>
                     </p>
 
                     <p id="user-login-protection">
-                        <strong>User Login Protection:</strong>
-                        <span class="tooltip-icon" data-tooltip="The protection provided by the service">?</span>
+                        <strong>{{ texts['user_login_protection'] }}</strong>  
+                        <span class="tooltip-icon" data-tooltip="{{ texts['tooltip_user_login_protection'] }}">?</span>
                     </p>
                 </div>
             </div>
@@ -45,53 +40,50 @@
         <div class="column">
             <div class="card user-card" id="userCard">
                 <h2>
-                    User's Choices 
-                    <span class="tooltip-icon" data-tooltip="The security that your password will have against an attack">?</span>
+                    {{ texts['user_choices'] }}  
+                    <span class="tooltip-icon" data-tooltip="{{ texts['tooltip_user_choices'] }}">?</span>
                 </h2>
 
-                <label for="password">Enter Password:</label>
-                <input type="text" id="password" oninput="evaluatePassword()" placeholder="Type your password here">
+                <label for="password">{{ texts['enter_password'] }}</label>
+                <input type="text" id="password" placeholder="{{ texts['enter_password_placeholder'] }}">
                 <p id="passwordCompositionReq"></p>
                 <p id="passwordScore"></p>
 
-                <label for="reuses">Chosen Password uses:</label>
+                <label for="reuses">{{ texts['chosen_password_uses'] }}</label>
                 <select id="reuses">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="10">More than 3</option>
+                    <option value="10">{{ texts['more_than_3'] }}</option>
                 </select>
             </div>
         </div>
     </div>
-    
-    <div class="row">
 
+    <div class="row">
         <!-- Risk Indicators -->
         <div class="column">
             <div class="card risk-indicators">
-                <h2>Risk Indicators</h2>
+                <h2>{{ texts['risk_indicators'] }}</h2>
                 <div class="indicator-item">
-                    <span>Risk of Data Exposure</span>
-                    <!-- <span class="risk-number" id="riskOfDataExposure">0</span> -->
+                    <span>{{ texts['risk_of_data_exposure'] }}</span>
                     <div class="indicator" id="riskOfDataExposureIndicator"></div>
                 </div>
                 <div class="indicator-item">
-                    <span>User Login Protection</span>
-                    <!-- <span class="risk-number" id="serviceRisk">0</span> -->
+                    <span>{{ texts['user_login_protection'] }}</span>
                     <div class="indicator" id="serviceRiskIndicator"></div>                       
                 </div>
                 <div class="indicator-item">
-                    <span>Users' Choices</span>
-                    <!-- <span class="risk-number" id="userRisk">0</span> -->
+                    <span>{{ texts['user_choices'] }}</span>
                     <div class="indicator" id="userRiskIndicator"></div>
                 </div>
             </div>
         </div>
 
+        <!-- Global Risk -->
         <div class="column">
             <div class="card global-risk">
-                <h3>Global Risk</h3>
+                <h3>{{ texts['global_risk'] }}</h3>
                 <div class="global-risk-container">
                     <div class="global-risk-bar">
                         <div class="risk-fill" id="globalRiskBar"></div>
@@ -100,29 +92,30 @@
             </div>
         </div>
         
-
         <!-- Risk Indicator Legend -->
         <div class="column">
             <div class="card legend">
-                <h2>Risk Indicator Legend</h2>
+                <h2>{{ texts['risk_legend'] }}</h2>
                 <div class="legend-item">
-                    <span class="legend-circle" style="background-color: green;"></span> Very small risk
+                    <span class="legend-circle" style="background-color: green;"></span> {{ texts['legend_very_small'] }}
                 </div>
                 <div class="legend-item">
-                    <span class="legend-circle" style="background-color: yellow;"></span> Small risk
+                    <span class="legend-circle" style="background-color: yellow;"></span> {{ texts['legend_small'] }}
                 </div>
                 <div class="legend-item">
-                    <span class="legend-circle" style="background-color: orange;"></span> Big risk
+                    <span class="legend-circle" style="background-color: orange;"></span> {{ texts['legend_big'] }}
                 </div>
                 <div class="legend-item">
-                    <span class="legend-circle" style="background-color: red;"></span> Very big risk
+                    <span class="legend-circle" style="background-color: red;"></span> {{ texts['legend_very_big'] }}
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Privacy Notice -->
     <div class="data-privacy-notice">
         <p>
-            All data entered by the user is processed locally and <strong>no data is collected or stored.</strong>
+            {{ texts['data_privacy_notice'] }}
         </p>
     </div>
 </div>
@@ -131,4 +124,5 @@
 <script src="{{ url_for('static', filename='js/passwordStrengthChecker.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 <script src="{{ url_for('static', filename='js/riskCalculation.js') }}"></script>
+
 {% endblock %}

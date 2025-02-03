@@ -115,23 +115,26 @@ document.addEventListener('DOMContentLoaded', () => {
         
         updateGlobalRiskBar(globalRisk);
 
+        console.log('Dexp:', riskOfDataExposure)
+        console.log('SR: ', serviceRisk)
+        console.log('UR: ', userRisk)
+        console.log('Global risk: ', globalRisk)
+        
+
     }
     
 
     function updateGlobalRiskBar(globalRisk) {
         const riskBar = document.getElementById("globalRiskBar");
     
-        // Normalize risk value between 0-100 if necessary
-        let percentage = Math.min(Math.max(globalRisk, 0), 100); 
-    
         // Determine bar width (divide into four slots)
-        if (percentage <= 25) {
+        if (globalRisk <= topglobalriskvalue * 0.25) {
             riskBar.style.width = "25%";
             riskBar.className = "risk-fill green";
-        } else if (percentage <= 50) {
+        } else if (globalRisk <= topglobalriskvalue * 0.50) {
             riskBar.style.width = "50%";
             riskBar.className = "risk-fill yellow";
-        } else if (percentage <= 75) {
+        } else if (globalRisk <= topglobalriskvalue * 0.75) {
             riskBar.style.width = "75%";
             riskBar.className = "risk-fill orange";
         } else {
