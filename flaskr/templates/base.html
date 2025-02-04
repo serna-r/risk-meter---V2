@@ -16,10 +16,11 @@
             {{ '🇬🇧 English' if lang == 'es' else '🇪🇸 Español' }}
         </button>
 
-        <!-- Top banner -->
-        <div class="top-banner">
-            <img src="{{ url_for('static', filename='images/incibe/top-banner.jpg') }}" alt="Top Banner">
-        </div>
+        <!-- Button to reopen the instructions popup -->
+        <button id="openPopupButton" class="reopen-popup">
+            {{ '📖 Reopen Instructions' if lang == 'en' else '📖 Reabrir Instrucciones' }}
+        </button>
+
 
         <main id="main-div">
             {% block content %}{% endblock %}

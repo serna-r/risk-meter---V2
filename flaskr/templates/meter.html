@@ -3,6 +3,34 @@
 {% block content %}
 <h1>{{ texts['title'] }}</h1>
 
+<!-- Instruction Popup -->
+<div id="instructionPopup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>{{ texts['popup_title'] }}</h2>
+        <p>{{ texts['popup_description'] }}</p>
+        <ol>
+            <li><strong>{{ texts['popup_step1'] }}</strong></li>
+            <li><strong>{{ texts['popup_step2'] }}</strong></li>
+            <li><strong>{{ texts['popup_step3'] }}</strong></li>
+            <li><strong>{{ texts['popup_step4'] }}</strong></li>
+        </ol>
+        <p><strong>{{ texts['popup_language_info'] }}</strong></p>
+
+        <!-- Language Change Dropdown inside Popup -->
+        <label for="popupLanguageSelector">{{ texts['reopen_instructions'] }}</label>
+        <br>
+        <select id="popupLanguageSelector">
+            <option value="en" {{ 'selected' if lang == 'en' else '' }}>English</option>
+            <option value="es" {{ 'selected' if lang == 'es' else '' }}>Español</option>
+        </select>
+
+
+        <button id="closePopup">{{ texts['popup_button'] }}</button>
+    </div>
+</div>
+
+
+
 <div class="research-info">
     <p>
         {{ texts['research_info'] | safe }}
@@ -124,5 +152,6 @@
 <script src="{{ url_for('static', filename='js/passwordStrengthChecker.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 <script src="{{ url_for('static', filename='js/riskCalculation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/popup.js') }}"></script>
 
 {% endblock %}

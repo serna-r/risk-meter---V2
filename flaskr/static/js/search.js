@@ -91,14 +91,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <strong>${texts.risk_of_data_exposure || "Risk of Data Exposure"}:</strong>  
                 <span class="tooltip-icon" data-tooltip="${texts.tooltip_risk_of_data_exposure || "The risk of your private data being leaked on the internet"}">?</span>
             </p>
-            <p class="service-info"><strong>${texts.service_type || "Service Type"}:</strong> ${service.Type}</p>
+            <p class="service-info">${service.Type}</p>
 
             <p id="user-login-protection">
                 <strong>${texts.user_login_protection || "User Login Protection"}:</strong> 
                 <span class="tooltip-icon" data-tooltip="${texts.tooltip_user_login_protection || "The protection provided by the service"}">?</span>
             </p>
             <p class="service-info">
-                ${texts.two_factor_authentication || "Two-factor authentication"}: 
+                <p>${texts.min_length || "Minimum Length"}: ${texts.you_need_at_least || "You need at least"} ${service['min length']} ${texts.characters || "characters"}</p>
+                <p>${texts.min_characters || "Minimum characters"}: ${texts.you_need_at_least || "You need at least"} ${formattedMinMask}</p>
                 ${service['2fa'] == 1 
                     ? (texts.tfa_yes || "Provides two-factor authentication") 
                     : (texts.tfa_no || "Does not provide two-factor authentication")}
@@ -108,8 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
 
         passwordCompositionReq.innerHTML = `
-        <p>${texts.min_length || "Minimum Length"}: ${texts.you_need_at_least || "You need at least"} ${service['min length']} ${texts.characters || "characters"}</p>
-        <p>${texts.min_characters || "Minimum characters"}: ${texts.you_need_at_least || "You need at least"} ${formattedMinMask}</p>
+        
         `;
 
         // Update Risk of Data Exposure and Service Risk values in the DOM (if elements exist)

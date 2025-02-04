@@ -1,6 +1,6 @@
 {
     "title": "Password Risk Meter",
-    "research_info": "This website, designed as part of the research project <strong>APAMCiber</strong> (Attribution and Prevention of Threats with Impact on Multiple Relevant Groups in Cybersecurity), funded by <strong>INCIBE</strong> and conducted at <strong>Universidad Carlos III de Madrid</strong>, aims to validate the password risk meter developed for the project. <strong>No personal data is collected.</strong>",
+    "research_info": "This website, designed as part of the research project <a href='https://cosec.inf.uc3m.es/projects/apamciber/'><strong>APAMCiber</strong></a> (Attribution and Prevention of Threats with Impact on Multiple Relevant Groups in Cybersecurity), directed by Lorena González Manzano (lgmanzan@inf.uc3m.es), funded by INCIBE and conducted at Universidad Carlos III de Madrid, aims to validate the password risk meter developed for the project. No personal data is collected.",
     "search_service": "Search service...",
     "no_services_found": "No services found",
     "error_fetching_services": "Error fetching services",
@@ -19,8 +19,6 @@
     "chosen_password_uses": "Chosen Password Uses:",
     "more_than_3": "More than 3",
 
-    "service_type": "Service Type",
-    "two_factor_authentication": "Two-factor authentication",
     "tfa_yes": "Provides two-factor authentication",
     "tfa_no": "Does not provide two-factor authentication",
 
@@ -33,13 +31,36 @@
     "decimal_character": "one decimal character",
     "special_character": "one special character",
 
+    "veryWeak": "Very Weak",
+    "weak": "Weak",
+    "fair": "Fair",
+    "strong": "Strong",
+    "veryStrong": "Very Strong",
+    "score": "Score",
+    "suggestions": "Suggestions",
+    "goodPassword": "Good password!",
+    "suggestionScore0": "Your password is too weak. Use a mix of uppercase, lowercase, numbers, and symbols. Avoid common words.",
+    "suggestionScore1": "Your password is weak. Consider adding more characters and making it less predictable.",
+    "suggestionScore2": "Your password is decent, but adding length and special characters can improve security.",
+    "suggestionScore3": "Good password! However, using a passphrase or adding more randomness would enhance security.",
+    "suggestionScore4": "Great password! You are following best security practices.",
+
     "risk_indicators": "Risk Indicators",
-    "global_risk": "Global Risk",
-    "risk_legend": "Risk Indicator Legend",
+    "global_risk": "Global Risk indicator",
+    "risk_legend": "Legend",
     "legend_very_small": "Very small risk",
     "legend_small": "Small risk",
     "legend_big": "Big risk",
     "legend_very_big": "Very big risk",
 
-    "data_privacy_notice": "All data entered by the user is processed locally and no data is collected or stored."
+    "data_privacy_notice": "All data entered by the user is processed locally and no data is collected or stored.",
+
+    "popup_title": "Welcome to Password Risk Meter",
+    "popup_description": "Follow these steps to assess your risk:",
+    "popup_step1": "Select a service: Search for the service in the search bar.",
+    "popup_step2": "Enter password: Type your password to evaluate its strength.",
+    "popup_step3": "Enter number of uses: Specify how many times you use this password.",
+    "popup_step4": "Check obtained risks: Review the risk analysis results.",
+    "reopen_instructions": "You can change the language and reopen this instructions at the top right.",
+    "popup_button": "Got it"
 }

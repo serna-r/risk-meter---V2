@@ -1,26 +1,24 @@
 {
     "title": "Medidor de Riesgo de Contraseña",
-    "research_info": "Este sitio web, diseñado como parte del proyecto de investigación <strong>APAMCiber</strong> (Atribución y Prevención de Amenazas con Impacto en Múltiples Grupos Relevantes en Ciberseguridad), financiado por <strong>INCIBE</strong> y llevado a cabo en la <strong>Universidad Carlos III de Madrid</strong>, tiene como objetivo validar el medidor de riesgo de contraseñas desarrollado para el proyecto. <strong>No se recopilan datos personales.</strong>",
+    "research_info": "Este sitio web, diseñado como parte del proyecto de investigación <a href='https://cosec.inf.uc3m.es/projects/apamciber/'><strong>APAMCiber</strong></a> (Atribución y Prevención de Amenazas con Impacto en Múltiples Grupos Relevantes en Ciberseguridad), dirigido por Lorena González Manzano (lgmanzan@inf.uc3m.es), financiado por INCIBE y realizado en la Universidad Carlos III de Madrid, tiene como objetivo validar el medidor de riesgo de contraseñas desarrollado para el proyecto. No se recopilan datos personales.",
     "search_service": "Buscar servicio...",
     "no_services_found": "No se encontraron servicios",
-    "error_fetching_services": "Error al obtener servicios",
-
+    "error_fetching_services": "Error al obtener los servicios",
+    
     "service": "Servicio",
     "select_service": "Selecciona un servicio para ver sus detalles",
     "risk_of_data_exposure": "Riesgo de Exposición de Datos",
-    "tooltip_risk_of_data_exposure": "El riesgo de que sus datos privados sean filtrados en internet",
+    "tooltip_risk_of_data_exposure": "El riesgo de que tus datos privados sean filtrados en internet",
     "user_login_protection": "Protección de Inicio de Sesión",
-    "tooltip_user_login_protection": "La protección proporcionada por el servicio",
-
+    "tooltip_user_login_protection": "El nivel de protección que proporciona el servicio",
+    
     "user_choices": "Opciones del Usuario",
-    "tooltip_user_choices": "La seguridad que tendrá su contraseña contra un ataque",
-    "enter_password": "Introduce la Contraseña:",
+    "tooltip_user_choices": "La seguridad que tendrá tu contraseña ante un ataque",
+    "enter_password": "Introduce tu contraseña:",
     "enter_password_placeholder": "Escribe tu contraseña aquí",
-    "chosen_password_uses": "Usos de la Contraseña Elegida:",
+    "chosen_password_uses": "Veces que usas esta contraseña:",
     "more_than_3": "Más de 3",
 
-    "service_type": "Tipo de Servicio",
-    "two_factor_authentication": "Autenticación de dos factores",
     "tfa_yes": "Proporciona autenticación de dos factores",
     "tfa_no": "No proporciona autenticación de dos factores",
 
@@ -30,17 +28,39 @@
     "characters": "caracteres",
     "lowercase_character": "una letra minúscula",
     "uppercase_character": "una letra mayúscula",
-    "decimal_character": "un número decimal",
+    "decimal_character": "un número",
     "special_character": "un carácter especial",
 
-    "risk_indicators": "Indicadores de Riesgo",
-    "global_risk": "Riesgo Global",
-    "risk_legend": "Leyenda del Indicador de Riesgo",
-    "legend_very_small": "Riesgo muy pequeño",
-    "legend_small": "Riesgo pequeño",
-    "legend_big": "Riesgo grande",
-    "legend_very_big": "Riesgo muy grande",
+    "veryWeak": "Muy Débil",
+    "weak": "Débil",
+    "fair": "Aceptable",
+    "strong": "Fuerte",
+    "veryStrong": "Muy Fuerte",
+    "score": "Puntuación",
+    "suggestions": "Sugerencias",
+    "goodPassword": "¡Buena contraseña!",
+    "suggestionScore0": "Tu contraseña es demasiado débil. Usa una combinación de mayúsculas, minúsculas, números y símbolos. Evita palabras comunes.",
+    "suggestionScore1": "Tu contraseña es débil. Considera agregar más caracteres y hacerla menos predecible.",
+    "suggestionScore2": "Tu contraseña es aceptable, pero agregar más longitud y caracteres especiales puede mejorar la seguridad.",
+    "suggestionScore3": "¡Buena contraseña! Sin embargo, usar una frase o agregar más aleatoriedad mejoraría la seguridad.",
+    "suggestionScore4": "¡Gran contraseña! Estás siguiendo las mejores prácticas de seguridad.",
 
-    "data_privacy_notice": "Todos los datos ingresados por el usuario se procesan localmente y no se recopilan ni almacenan datos."
+    "risk_indicators": "Indicadores de riesgo",
+    "global_risk": "Indicador de Riesgo Global",
+    "risk_legend": "Leyenda",
+    "legend_very_small": "Riesgo muy bajo",
+    "legend_small": "Riesgo bajo",
+    "legend_big": "Riesgo alto",
+    "legend_very_big": "Riesgo muy alto",
+
+    "data_privacy_notice": "Todos los datos ingresados por el usuario se procesan localmente y no se recopilan ni almacenan datos.",
+
+    "popup_title": "Bienvenido al Medidor de Riesgo de Contraseña",
+    "popup_description": "Sigue estos pasos para evaluar tu riesgo:",
+    "popup_step1": "Selecciona un servicio: Busca el servicio en la barra de búsqueda.",
+    "popup_step2": "Introduce la contraseña: Ingresa tu contraseña para evaluar su fortaleza.",
+    "popup_step3": "Introduce el número de usos: Especifica cuántas veces usas esta contraseña.",
+    "popup_step4": "Mira los riesgos obtenidos: Revisa los resultados del análisis de riesgo.",
+    "reopen_instructions": "You can change the language and reopen this instructions at the top right.",
+    "popup_button": "Entendido"
 }
-
