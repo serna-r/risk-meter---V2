@@ -7,12 +7,12 @@
     
     "service": "Service",
     "select_service": "Select a service to view its details",
-    "risk_of_data_exposure": "Risk of Data Exposure",
+    "risk_of_data_exposure": "Risk of Data Exposure <span class='tooltip-icon' data-tooltip='The risk of your private data being leaked on the internet'>?</span>",
     "tooltip_risk_of_data_exposure": "The risk of your private data being leaked on the internet",
-    "user_login_protection": "User Login Protection",
+    "user_login_protection": "User Login Protection <span class='tooltip-icon' data-tooltip='The protection provided by the service'>?</span>",
     "tooltip_user_login_protection": "The protection provided by the service",
     
-    "user_choices": "User's Choices",
+    "user_choices": "User's Choices <span class='tooltip-icon' data-tooltip='The security that your password will have against an attack'>?</span>",
     "tooltip_user_choices": "The security that your password will have against an attack",
     "enter_password": "Enter Password:",
     "enter_password_placeholder": "Type your password here",

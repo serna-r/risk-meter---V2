@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load translation JSON dynamically
     async function loadTranslation(lang) {
         try {
-            const response = await fetch(`/static/json/translations/${lang}.json`);
+            const response = await fetch(`data/translations/${lang}.json`);
             if (!response.ok) throw new Error("Translation file not found");
             return await response.json();
         } catch (error) {

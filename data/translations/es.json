@@ -7,12 +7,12 @@
     
     "service": "Servicio",
     "select_service": "Selecciona un servicio para ver sus detalles",
-    "risk_of_data_exposure": "Riesgo de Exposición de Datos",
+    "risk_of_data_exposure": "Riesgo de Exposición de Datos <span class='tooltip-icon' data-tooltip='El riesgo de que tus datos privados sean filtrados en internet'>?</span>",
     "tooltip_risk_of_data_exposure": "El riesgo de que tus datos privados sean filtrados en internet",
-    "user_login_protection": "Protección de Inicio de Sesión",
+    "user_login_protection": "Protección de Inicio de Sesión <span class='tooltip-icon' data-tooltip='El nivel de protección que proporciona el servicio'>?</span>",
     "tooltip_user_login_protection": "El nivel de protección que proporciona el servicio",
     
-    "user_choices": "Opciones del Usuario",
+    "user_choices": "Opciones del Usuario <span class='tooltip-icon' data-tooltip='La seguridad que tendrá tu contraseña ante un ataque'>?</span>",
     "tooltip_user_choices": "La seguridad que tendrá tu contraseña ante un ataque",
     "enter_password": "Introduce tu contraseña:",
     "enter_password_placeholder": "Escribe tu contraseña aquí",

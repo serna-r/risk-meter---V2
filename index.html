@@ -7,12 +7,139 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Buttons to trigger language switching and popup -->
-    <button id="openPopupButton">Open Instructions</button>
-    <button id="langSwitch">Switch Language</button>
-    <main id="main-content"></main>
+    <!-- Language Switcher Button -->
+    <button class="lang-switcher" id="langSwitch">Loading...</button>
+
+    <!-- Button to reopen the instructions popup -->
+    <button id="openPopupButton" class="reopen-popup">Loading...</button>
+
+
+
+    <main id="main-content">
+        <h1 id="title">Loading...</h1>
+
+        <!-- Instruction Popup -->
+        <div id="instructionPopup" class="popup-overlay">
+            <div class="popup-content">
+                <h2 id="popup_title">Popup Title</h2>
+                <p id="popup_description">Popup description...</p>
+                <ol>
+                    <li><strong id="popup_step1">Step 1</strong></li>
+                    <li><strong id="popup_step2">Step 2</strong></li>
+                    <li><strong id="popup_step3">Step 3</strong></li>
+                    <li><strong id="popup_step4">Step 4</strong></li>
+                </ol>
+                <label for="popupLanguageSelector" id="reopen_instructions">Select Language:</label>
+                <br>
+                <br>
+                <select id="popupLanguageSelector">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
+                <br>
+                <button id="closePopup">Close</button>
+            </div>
+        </div>
+
+        <div class="research-info">
+            <p id="research_info">Research information here...</p>
+        </div>
+
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search Service...">
+                <div id="suggestions" class="suggestions-list"></div>
+            </div>
+
+            <!-- Service card -->
+            <div class="row">
+                <div class="column">
+                    <div class="card service-card">
+                        <h2 id="service-title">Service</h2>
+                        <p id="select_service">Select a service:</p>
+                        <p id="risk-data-exp">
+                            <strong id="risk_of_data_exposure">Risk of Data Exposure:</strong>
+                        </p>
+                        <p id="user-login-protection">
+                            <strong id="user_login_protection">User Login Protection:</strong>
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- User choices -->
+                <div class="column">
+                    <div class="card user-card">
+                        <h2 id="user_choices">User Choices</h2>
+                        <label for="password" id="enter_password">Enter Password:</label>
+                        <input type="text" id="password" placeholder="Enter your password">
+                        <p id="passwordCompositionReq"></p>
+                        <p id="passwordScore"></p>
+                        <label for="reuses" id="chosen_password_uses">Password Reuses:</label>
+                        <select id="reuses">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="10" id="more_than_3">More than 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Indicators -->
+            <div class="row">
+                <div class="column">
+                    <div class="card risk-indicators">
+                        <h2 id="risk_indicators">Risk Indicators</h2>
+                        <p id="riskOfDataExposureIndicator"></p>
+                        <p id="serviceRiskIndicator"></p>
+                        <p id="userRiskIndicator"></p>
+                    </div>
+                </div>
+
+                <!-- Global risk -->
+                <div class="column">
+                    <div class="card global-risk">
+                        <h3 id="global_risk">Global Risk</h3>
+                        <div class="global-risk-bar">
+                            <div class="risk-fill" id="globalRiskBar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk Indicator Legend -->
+                <div class="column">
+                    <div class="card legend">
+                        <h2 id="risk_legend">Risk Legend</h2>
+                        <div class="legend-item">
+                            <span class="legend-circle" style="background-color: green;"></span>
+                            <span id="legend_very_small">Very Small Risk</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-circle" style="background-color: yellow;"></span>
+                            <span id="legend_small">Small Risk</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-circle" style="background-color: orange;"></span>
+                            <span id="legend_big">Big Risk</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-circle" style="background-color: red;"></span>
+                            <span id="legend_very_big">Very Big Risk</span>
+                        </div>
+                    </div>
+</div>
+
+            </div>
+
+            <div class="data-privacy-notice">
+                <p id="data_privacy_notice">Data privacy notice...</p>
+            </div>
+        </div>
+    </main>
 
     <!-- JavaScript Files -->
+    <script src="js/zxcvbn.js"></script>
     <script src="js/popup.js"></script>
     <script src="js/search.js"></script>
     <script src="js/riskCalculation.js"></script>
