@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             popupLanguageSelector.value = lang; // Set current language in selector
 
             popupLanguageSelector.addEventListener("change", (event) => {
-                sessionStorage.setItem("popupOpen", "true"); // ✅ Keep popup open after reload
+                sessionStorage.setItem("popupOpen", "true"); // Keep popup open after reload
                 updateLanguage(event.target.value);
             });
         }

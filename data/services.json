@@ -1,6 +1,6 @@
 [
     {
-        "Website": "Google",
+        "Website": "Service A",
         "Dexp": 2.5,
         "min length": 8,
         "min mask": "luds",
@@ -9,7 +9,7 @@
         "Service Risk": 0.2
     },
     {
-        "Website": "Facebook",
+        "Website": "Service B",
         "Dexp": 3.1,
         "min length": 6,
         "min mask": "lu",
