@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const passwordInput = document.getElementById('password');
     const passwordScoreOutput = document.getElementById('passwordScore');
 
+    if (!passwordInput || !passwordScoreOutput) {
+        console.warn("Password strength elements not found.");
+        return;
+    }
+    
     // Get the language parameter from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const lang = urlParams.get('lang') || 'en'; // Default to English

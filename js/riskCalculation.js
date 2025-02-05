@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const serviceRiskIndicator = document.getElementById('serviceRiskIndicator'); // Service Risk Indicator
     const userRiskIndicator = document.getElementById('userRiskIndicator'); // User Risk Indicator
 
+    if (!passwordInput || !passwordReuses) {
+        console.warn("Risk Calculation elements not found. Skipping initialization.");
+        return;
+    }
+
     // Define thresholds for each risk type
     const topglobalriskvalue = 50;
     const topvalueRD = 10;
