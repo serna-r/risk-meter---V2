@@ -1,0 +1,20 @@
+[
+    {
+        "Website": "Google",
+        "Dexp": 2.5,
+        "min length": 8,
+        "min mask": "luds",
+        "2fa": 1,
+        "extra sec": 1,
+        "Service Risk": 0.2
+    },
+    {
+        "Website": "Facebook",
+        "Dexp": 3.1,
+        "min length": 6,
+        "min mask": "lu",
+        "2fa": 0,
+        "extra sec": 0,
+        "Service Risk": 0.6
+    }
+]

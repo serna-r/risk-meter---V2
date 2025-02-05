@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const mainContent = document.getElementById("main-content");
 
-    // Cargar traducciones dinámicamente
+    // Get Language from Local Storage
     const lang = localStorage.getItem("lang") || "en";
-    const texts = await fetch(`data/translations/${lang}.json`).then(res => res.json());
 
+    // Fetch Translations
+    const texts = await fetch(`data/translations/${lang}.json`)
+        .then(res => res.json())
+        .catch(err => console.error("Failed to load translations:", err));
+
+    // Populate Page
     mainContent.innerHTML = `
         <h1>${texts.title}</h1>
         <div class="search-bar">
@@ -26,12 +31,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
     `;
 
+    // Language Switcher
     document.getElementById("langSwitch").addEventListener("click", () => {
         const newLang = lang === "en" ? "es" : "en";
         localStorage.setItem("lang", newLang);
         location.reload();
     });
 
-    // Cargar funcionalidad de búsqueda
+    // Load Search Functionality
     loadSearch(texts);
 });

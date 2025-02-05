@@ -2,8 +2,10 @@ async function loadSearch(texts) {
     const searchInput = document.getElementById("searchInput");
     const suggestionsContainer = document.getElementById("suggestions");
 
-    // Cargar datos de servicios desde JSON
-    const services = await fetch("data/services.json").then(res => res.json());
+    // Load Data from JSON
+    const services = await fetch("data/services.json")
+        .then(res => res.json())
+        .catch(err => console.error("Failed to load services:", err));
 
     searchInput.addEventListener("input", () => {
         const query = searchInput.value.toLowerCase();
