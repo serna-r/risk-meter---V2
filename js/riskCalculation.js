@@ -37,47 +37,61 @@ document.addEventListener('DOMContentLoaded', () => {
         return dataExposureRisk * (1 + serviceRisk + userRisk);
     }
 
-    // Function to update Risk Indicator colors based on thresholds
+    // Function to update Risk Indicator colors with smooth RGB interpolation
     function updateRiskIndicatorColor(value, indicatorElement, riskType) {
         let thresholds;
 
         switch (riskType) {
             case 'dataExposure':
                 thresholds = {
-                    green: topvalueRD * 0.125,
-                    yellow: topvalueRD * 0.25,
-                    orange: topvalueRD * 0.5,
+                    phase1: topvalueRD * 0.125,  // Green → Yellow
+                    phase2: topvalueRD * 0.25,   // Yellow → Orange
+                    phase3: topvalueRD * 0.5,    // Orange → Red
                 };
                 break;
             case 'serviceAuthentication':
-                thresholds = {
-                    green: topvalueOtherRisks * 0.125,
-                    yellow: topvalueOtherRisks * 0.25,
-                    orange: topvalueOtherRisks * 0.5,
-                };
-                break;
             case 'userLogin':
                 thresholds = {
-                    green: topvalueOtherRisks * 0.125,
-                    yellow: topvalueOtherRisks * 0.25,
-                    orange: topvalueOtherRisks * 0.5,
+                    phase1: topvalueOtherRisks * 0.125,
+                    phase2: topvalueOtherRisks * 0.25,
+                    phase3: topvalueOtherRisks * 0.5,
                 };
                 break;
             default:
-                thresholds = { green: 0.25, yellow: 0.5, orange: 1 }; // Default thresholds
+                thresholds = {
+                    phase1: 0.1,
+                    phase2: 0.2,
+                    phase3: 0.4,
+                };
         }
 
-        // Apply thresholds to determine color
-        if (value < thresholds.green) {
-            indicatorElement.style.backgroundColor = 'green';
-        } else if (value < thresholds.yellow) {
-            indicatorElement.style.backgroundColor = 'yellow';
-        } else if (value < thresholds.orange) {
-            indicatorElement.style.backgroundColor = 'orange';
+        let red, green;
+
+        if (value <= thresholds.phase1) {
+            // Phase 1: Green (0,255,0) → Yellow (255,255,0)
+            red = Math.floor((value / thresholds.phase1) * 255); // Increase red
+            green = 255; // Keep green fully
+        } else if (value <= thresholds.phase2) {
+            // Phase 2: Yellow (255,255,0) → Orange (255,165,0)
+            red = 255; // Stay fully red
+            green = Math.max(165, Math.floor(255 - ((value - thresholds.phase1) / (thresholds.phase2 - thresholds.phase1)) * 90)); // Decrease green
+        } else if (value <= thresholds.phase3) {
+            // Phase 3: Orange (255,165,0) → Red (255,0,0)
+            red = 255; // Stay fully red
+            green = Math.max(0, Math.floor(165 - ((value - thresholds.phase2) / (thresholds.phase3 - thresholds.phase2)) * 165)); // Decrease green
         } else {
-            indicatorElement.style.backgroundColor = 'red';
+            // Beyond Phase 3: Fully Red (255,0,0)
+            red = 255;
+            green = 0;
         }
+
+        const color = `rgb(${red}, ${green}, 0)`;
+
+        // Apply color to the indicator
+        indicatorElement.style.backgroundColor = color;
     }
+
+
 
     function calculateAndUpdateRisks() {
         const password = passwordInput ? passwordInput.value : '';
@@ -138,21 +152,46 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateGlobalRiskBar(globalRisk) {
         const riskBar = document.getElementById("globalRiskBar");
     
-        // Determine bar width (divide into four slots)
-        if (globalRisk <= topglobalriskvalue * 0.125) {
-            riskBar.style.width = "25%";
-            riskBar.className = "risk-fill green";
-        } else if (globalRisk <= topglobalriskvalue * 0.25) {
-            riskBar.style.width = "50%";
-            riskBar.className = "risk-fill yellow";
-        } else if (globalRisk <= topglobalriskvalue * 0.5) {
-            riskBar.style.width = "75%";
-            riskBar.className = "risk-fill orange";
+        // Ensure globalRisk stays within 0-100 range
+        globalRisk = Math.max(0, Math.min(globalRisk, 100));
+    
+        // Define dynamic thresholds based on topglobalriskvalue
+        const phase1 = topglobalriskvalue / 8;  // Green → Yellow
+        const phase2 = topglobalriskvalue / 4;  // Yellow → Orange
+        const phase3 = topglobalriskvalue / 2;  // Orange → Red
+    
+        let red, green;
+        let widthPercentage;
+    
+        if (globalRisk <= phase1) {
+            // Phase 1: Green (0,255,0) → Yellow (255,255,0)
+            red = Math.min(255, Math.floor((globalRisk / phase1) * 255)); // Increase red
+            green = 255; // Stay fully green
+            widthPercentage = 25; // Set bar width to 25%
+        } else if (globalRisk <= phase2) {
+            // Phase 2: Yellow (255,255,0) → Orange (255,165,0)
+            red = 255; // Stay fully red
+            green = Math.max(165, Math.floor(255 - ((globalRisk - phase1) / (phase2 - phase1)) * 90)); // Decrease green to 165
+            widthPercentage = 50; // Set bar width to 50%
+        } else if (globalRisk <= phase3) {
+            // Phase 3: Orange (255,165,0) → Red (255,0,0)
+            red = 255; // Stay fully red
+            green = Math.max(0, Math.floor(165 - ((globalRisk - phase2) / (phase3 - phase2)) * 165)); // Decrease green to 0
+            widthPercentage = 75; // Set bar width to 75%
         } else {
-            riskBar.style.width = "100%";
-            riskBar.className = "risk-fill red";
+            // Phase 4: 50%+ stays fully red (255,0,0)
+            red = 255;
+            green = 0;
+            widthPercentage = 100; // Set bar width to 100%
         }
+    
+        const color = `rgb(${red}, ${green}, 0)`;
+    
+        // Apply styles to the bar
+        riskBar.style.width = `${widthPercentage}%`; // Set width based on phase
+        riskBar.style.backgroundColor = color;
     }
+    
     // Attach the function to the global scope
     window.calculateAndUpdateRisks = calculateAndUpdateRisks;
 
