@@ -50,11 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 break;
             case 'serviceAuthentication':
+                thresholds = {
+                    green: topvalueOtherRisks * 0.125,
+                    yellow: topvalueOtherRisks * 0.25,
+                    orange: topvalueOtherRisks * 0.5,
+                };
+                break;
             case 'userLogin':
                 thresholds = {
-                    green: topvalueRD * 0.125,
-                    yellow: topvalueRD * 0.25,
-                    orange: topvalueRD * 0.5,
+                    green: topvalueOtherRisks * 0.125,
+                    yellow: topvalueOtherRisks * 0.25,
+                    orange: topvalueOtherRisks * 0.5,
                 };
                 break;
             default:
