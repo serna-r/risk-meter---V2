@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Risk Meter</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Language Switcher Button -->
     <button class="lang-switcher" id="langSwitch">Loading...</button>
@@ -47,15 +49,14 @@
 
         <div class="container">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search Service...">
-                <!-- <div id="suggestions" class="suggestions-list"></div> -->
+                <select id="serviceDropdown"></select>
             </div>
 
             <!-- Service card -->
             <div class="row">
                 <div class="column">
-                    <div class="card service-card">
-                        <h2 id="service-title">Service</h2>
+                    <div id="serviceCard" class="card service-card">
+                        <h2 id="service">Service</h2>
                         <p id="select_service">Select a service:</p>
                         <p id="risk-data-exp">
                             <strong id="risk_of_data_exposure">Risk of Data Exposure:</strong>
@@ -73,6 +74,7 @@
                         <h2 id="user_choices">User Choices</h2>
                         <label for="password" id="enter_password">Enter Password:</label>
                         <input type="text" id="password" placeholder="Enter your password">
+                        <br>
                         <p id="passwordCompositionReq"></p>
                         <p id="passwordScore"></p>
                         <label for="reuses" id="chosen_password_uses">Password Reuses:</label>
@@ -97,7 +99,7 @@
                         </div>
                         <div class="indicator-item">
                             <span id="user_login_protection_title"></span>
-                            <div class="indicator" id="serviceRiskIndicator"></div>                       
+                            <div class="indicator" id="serviceRiskIndicator"></div>
                         </div>
                         <div class="indicator-item">
                             <span id="user_choices_title"></span>
@@ -139,7 +141,7 @@
                             <span id="legend_very_big">Very Big Risk</span>
                         </div>
                     </div>
-</div>
+                </div>
 
             </div>
 
@@ -147,6 +149,12 @@
                 <p id="data_privacy_notice">Data privacy notice...</p>
             </div>
         </div>
+
+        <!-- Bottom banner -->
+        <div class="bottom-banner">
+            <img src="/assets/images/bottom-banner.jpg" alt="Bottom Banner">
+        </div>
+
     </main>
 
     <!-- JavaScript Files -->
@@ -157,4 +165,5 @@
     <script src="js/riskCalculation.js"></script>
     <script src="js/passwordStrengthChecker.js"></script>
 </body>
+
 </html>

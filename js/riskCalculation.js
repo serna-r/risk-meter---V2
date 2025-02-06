@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Define thresholds for each risk type
-    const topglobalriskvalue = 50;
-    const topvalueRD = 10;
+    const topglobalriskvalue = 100;
+    const topvalueRD = 20;
     const topvalueOtherRisks = 2;
 
     // Default values for risks (used when elements are missing in the DOM)
@@ -44,21 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (riskType) {
             case 'dataExposure':
                 thresholds = {
-                    green: topvalueRD * 0.25,
-                    yellow: topvalueRD * 0.5,
-                    orange: topvalueRD * 0.75,
+                    green: topvalueRD * 0.125,
+                    yellow: topvalueRD * 0.25,
+                    orange: topvalueRD * 0.5,
                 };
                 break;
             case 'serviceAuthentication':
             case 'userLogin':
                 thresholds = {
-                    green: topvalueOtherRisks * 0.25,
-                    yellow: topvalueOtherRisks * 0.5,
-                    orange: topvalueOtherRisks * 0.75,
+                    green: topvalueRD * 0.125,
+                    yellow: topvalueRD * 0.25,
+                    orange: topvalueRD * 0.5,
                 };
                 break;
             default:
-                thresholds = { green: 1, yellow: 3, orange: 5 }; // Default thresholds
+                thresholds = { green: 0.25, yellow: 0.5, orange: 1 }; // Default thresholds
         }
 
         // Apply thresholds to determine color
@@ -133,13 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const riskBar = document.getElementById("globalRiskBar");
     
         // Determine bar width (divide into four slots)
-        if (globalRisk <= topglobalriskvalue * 0.25) {
+        if (globalRisk <= topglobalriskvalue * 0.125) {
             riskBar.style.width = "25%";
             riskBar.className = "risk-fill green";
-        } else if (globalRisk <= topglobalriskvalue * 0.50) {
+        } else if (globalRisk <= topglobalriskvalue * 0.25) {
             riskBar.style.width = "50%";
             riskBar.className = "risk-fill yellow";
-        } else if (globalRisk <= topglobalriskvalue * 0.75) {
+        } else if (globalRisk <= topglobalriskvalue * 0.5) {
             riskBar.style.width = "75%";
             riskBar.className = "risk-fill orange";
         } else {

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const searchInput = document.getElementById('searchInput');
-    const suggestionsContainer = document.getElementById('suggestions');
+    const dropdown = document.getElementById('serviceDropdown'); 
     const serviceCard = document.getElementById('serviceCard');
     const riskOfDataExposureElement = document.getElementById('riskOfDataExposure');
     const serviceRiskElement = document.getElementById('serviceRisk');
@@ -23,46 +22,34 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Load translations
     const texts = await loadTranslation(lang);
-    
-    // Set translated placeholder text for the search bar
-    if (searchInput) {
-        searchInput.setAttribute("placeholder", texts.search_service || "Search service...");
-    }
 
     try {
         const response = await fetch("data/services.json");
         if (!response.ok) throw new Error("Failed to load services.json");
-        const services = await response.json();
+        const allServices = await response.json();
+        
+        // Select services based on language
+        const services = allServices[lang] || [];
 
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase().trim();
-            suggestionsContainer.innerHTML = "";
+        // Populate dropdown menu
+        if (dropdown) {
+            dropdown.innerHTML = `<option value="">${texts.select_service || "Select a service..."}</option>`;
 
-            if (query.length === 0) return;
-
-            const results = services.filter(service =>
-                service.Website.toLowerCase().includes(query)
-            );
-
-            if (results.length === 0) {
-                suggestionsContainer.innerHTML = `<p>${texts.no_services_found || "No services found"}</p>`;
-                return;
-            }
-
-            results.forEach(service => {
-                const suggestion = document.createElement('div');
-                suggestion.className = 'suggestion-item';
-                suggestion.textContent = service.Website;
-
-                suggestion.addEventListener('click', () => {
-                    searchInput.value = service.Website;
-                    suggestionsContainer.innerHTML = "";
-                    showServiceDetails(service, texts);
-                });
-
-                suggestionsContainer.appendChild(suggestion);
+            services.forEach(service => {
+                const option = document.createElement('option');
+                option.value = service.Website;
+                option.textContent = service.Website;
+                dropdown.appendChild(option);
             });
-        });
+
+            // Event Listener for dropdown change
+            dropdown.addEventListener('change', () => {
+                const selectedService = services.find(service => service.Website === dropdown.value);
+                if (selectedService) {
+                    showServiceDetails(selectedService, texts);
+                }
+            });
+        }
 
     } catch (error) {
         console.error("Error loading services:", error);
@@ -90,13 +77,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div id="details">
                 <p id="risk-data-exp">
                     <strong>${texts.risk_of_data_exposure || "Risk of Data Exposure"}:</strong>  
-                    <span class="tooltip-icon" data-tooltip="${texts.tooltip_risk_of_data_exposure || "The risk of your private data being leaked on the internet"}">?</span>
                 </p>
                 <p class="service-info">${service.Type}</p>
 
                 <p id="user-login-protection">
-                    <strong>${texts.user_login_protection || "User Login Protection"}:</strong> 
-                    <span class="tooltip-icon" data-tooltip="${texts.tooltip_user_login_protection || "The protection provided by the service"}">?</span>
+                    <strong>${texts.user_login_protection || "User Login Protection"}:</strong>
                 </p>
                 <p class="service-info">
                     <p>${texts.min_length || "Minimum Length"}: ${texts.you_need_at_least || "You need at least"} ${service['min length']} ${texts.characters || "characters"}</p>
