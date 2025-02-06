@@ -16,7 +16,7 @@
     "tooltip_user_choices": "La seguridad que tendrá tu contraseña ante un ataque",
     "enter_password": "Introduce tu contraseña:",
     "enter_password_placeholder": "Escribe tu contraseña aquí",
-    "chosen_password_uses": "Veces que usas esta contraseña:",
+    "chosen_password_uses": "Servicios distintos en los que usas esta contraseña:",
     "more_than_3": "Más de 3",
 
     "tfa_yes": "Proporciona autenticación de dos factores",
