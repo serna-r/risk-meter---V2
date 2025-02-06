@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         ? (texts.tfa_yes || "Provides two-factor authentication") 
                         : (texts.tfa_no || "Does not provide two-factor authentication")}
                 </p>
+                <br>
             </div>
         `;
 
