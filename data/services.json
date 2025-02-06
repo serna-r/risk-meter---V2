@@ -44,15 +44,6 @@
             "2fa": "",
             "Dexp": 6.678571429,
             "Service Risk": 1.5
-        },
-        {
-            "Website": "Worst service",
-            "Type": "This is an example of the worst possible service .This service  stores all types of data",
-            "min mask": "luds",
-            "min length": 1,
-            "2fa": "",
-            "Dexp": 20,
-            "Service Risk": 2
         }
     ],
     "es": [
@@ -100,15 +91,6 @@
             "2fa": "",
             "Dexp": 6.678571429,
             "Service Risk": 1.5
-        },
-        {
-            "Website": "Peor servicio",
-            "Type": "Este es un ejemplo del peor servicio posible. Este servicio almacena todo tipo de datos.",
-            "min mask": "luds",
-            "min length": 1,
-            "2fa": "",
-            "Dexp": 20,
-            "Service Risk": 2
         }
     ]
 }

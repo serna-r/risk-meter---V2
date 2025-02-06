@@ -61,7 +61,7 @@
 
     "popup_title": "Welcome to Password Risk Meter",
     "popup_description": "Follow these steps to assess your risk:",
-    "popup_step1": "Select a service: Search for the service in the search bar.",
+    "popup_step1": "Select a service: Select a service from the dropdown menu.",
     "popup_step2": "Enter password: Type your password to evaluate its strength.",
     "popup_step3": "Enter number of uses: Specify how many times you use this password.",
     "popup_step4": "Check obtained risks: Review the risk analysis results.",

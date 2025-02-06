@@ -144,8 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('SR: ', serviceRisk)
         console.log('UR: ', userRisk)
         console.log('Global risk: ', globalRisk)
-        
-
     }
     
 

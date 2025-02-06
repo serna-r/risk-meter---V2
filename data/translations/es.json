@@ -61,10 +61,10 @@
 
     "popup_title": "Bienvenido al Medidor de Riesgo de Contraseña",
     "popup_description": "Sigue estos pasos para evaluar tu riesgo:",
-    "popup_step1": "Selecciona un servicio: Busca el servicio en la barra de búsqueda.",
+    "popup_step1": "Selecciona un servicio: Selecciona un servicio del desplegable.",
     "popup_step2": "Introduce la contraseña: Ingresa tu contraseña para evaluar su fortaleza.",
     "popup_step3": "Introduce el número de usos: Especifica cuántas veces usas esta contraseña.",
     "popup_step4": "Mira los riesgos obtenidos: Revisa los resultados del análisis de riesgo.",
-    "reopen_instructions": "You can change the language and reopen this instructions at the top right.",
+    "reopen_instructions": "Puedes cambiar el idioma o volver a abrir las instrucciones arriba a la derecha.",
     "popup_button": "Entendido"
 }
