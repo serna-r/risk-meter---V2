@@ -356,20 +356,49 @@ h1 {
 .risk-fill.red { background-color: red; }
 
 /* Legend Styling */
-.legend-item {
+/* Legend Container */
+.legend-bar-container {
+    width: 100%;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    margin-bottom: 5px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.legend-circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: inline-block;
+/* Gradient Bar */
+.legend-bar {
+    width: 100%;
+    height: 50px; /* Increased height */
+    background: linear-gradient(to right, 
+        green 0%, 
+        yellow 25%, 
+        orange 50%, 
+        red 100%);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: 14px; /* Slightly bigger text */
+    font-weight: bold;
+    color: white; /* White text */
 }
+
+/* Legend Text Sections */
+.legend-section {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding-top: 10px; /* Adjusted to center text */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Ensure text is readable */
+#legend_very_small { color: black; }
+#legend_small { color: black; }
+#legend_big { color: black; }
+#legend_very_big { color: white; } /* White for contrast on red */
 
 /* Research Information */
 .research-info {
