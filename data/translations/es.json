@@ -6,7 +6,7 @@
     "error_fetching_services": "Error al obtener los servicios",
     
     "service": "Servicio",
-    "select_service": "Selecciona un servicio para ver sus detalles",
+    "select_service": "Selecciona un servicio",
     "risk_of_data_exposure": "Riesgo de Exposición de Datos <span class='tooltip-icon' data-tooltip='El riesgo de que tus datos privados sean filtrados en internet'>?</span>",
     "tooltip_risk_of_data_exposure": "El riesgo de que tus datos privados sean filtrados en internet",
     "user_login_protection": "Protección de Inicio de Sesión <span class='tooltip-icon' data-tooltip='El nivel de protección que proporciona el servicio'>?</span>",

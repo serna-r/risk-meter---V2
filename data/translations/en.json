@@ -6,7 +6,7 @@
     "error_fetching_services": "Error fetching services",
     
     "service": "Service",
-    "select_service": "Select a service to view its details",
+    "select_service": "Select a service",
     "risk_of_data_exposure": "Risk of Data Exposure <span class='tooltip-icon' data-tooltip='The risk of your private data being leaked on the internet'>?</span>",
     "tooltip_risk_of_data_exposure": "The risk of your private data being leaked on the internet",
     "user_login_protection": "User Login Protection <span class='tooltip-icon' data-tooltip='The protection provided by the service'>?</span>",
