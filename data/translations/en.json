@@ -38,7 +38,7 @@
     "veryStrong": "Very Strong",
     "score": "Score",
     "suggestions": "Suggestions",
-    "password_policy_violation": "Your password does not meet the service's security requirements",
+    "password_policy_violation": "Invalid password. Check user login protection",
     "goodPassword": "Good password!",
     "suggestionScore0": "Your password is too weak. Use a mix of uppercase, lowercase, numbers, and symbols. Avoid common words.",
     "suggestionScore1": "Your password is weak. Consider adding more characters and making it less predictable.",
