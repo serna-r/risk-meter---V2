@@ -95,13 +95,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Check if password meets service policies
         const policyCheck = meetsPasswordPolicies(password);
 
+        // Reset policy colors
+        const minLengthElement = document.getElementById("minimumLength");
+        const minCharactersElement = document.getElementById("minimumCharacters");
+
+        if (minLengthElement) minLengthElement.style.color = "";
+        if (minCharactersElement) minCharactersElement.style.color = "";
+
         if (policyCheck !== true) {
+            // Flags to track fulfilled policies
+            let minLengthFulfilled = true;
+            let minCharactersFulfilled = true;
+
+            // Highlight unmet policies in red
+            policyCheck.forEach((issue) => {
+                if (issue.includes(texts["min_length"] || "Minimum Length") && minLengthElement) {
+                    minLengthElement.style.color = "red";
+                    minLengthFulfilled = false;
+                }
+
+                if (issue.includes(texts["min_characters"] || "Minimum characters") && minCharactersElement) {
+                    minCharactersElement.style.color = "red";
+                    minCharactersFulfilled = false;
+                }
+            });
+
+            // If min length is met, turn it green
+            if (minLengthFulfilled && minLengthElement) {
+                minLengthElement.style.color = "green";
+            }
+
+            // If min characters is met, turn it green
+            if (minCharactersFulfilled && minCharactersElement) {
+                minCharactersElement.style.color = "green";
+            }
+
+            // Display policy violations without showing strength suggestions
             passwordScoreOutput.innerHTML = `
-                <strong style="color:red;">${texts["password_policy_violation"] || "Your password does not meet the service's security requirements:"}</strong><br> 
-                ${policyCheck.join("<br>")}
+                <strong style="color:red;">${texts["password_policy_violation"] || "Your password does not meet the service's security requirements:"}</strong><br>
             `;
             return; // Stop execution to prevent showing strength and suggestions
         }
+
+        // Reset colors if policies are met
+        if (minLengthElement) minLengthElement.style.color = "green";
+        if (minCharactersElement) minCharactersElement.style.color = "green"
 
         let finalFeedback = suggestions[score];
 

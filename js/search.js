@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <strong>${texts.user_login_protection || "User Login Protection"}:</strong>
                 </p>
                 <p class="service-info">
-                    <p>${texts.min_length || "Minimum Length"}: ${texts.you_need_at_least || "You need at least"} ${service['min length']} ${texts.characters || "characters"}</p>
-                    <p>${texts.min_characters || "Minimum characters"}: ${texts.you_need_at_least || "You need at least"} ${formattedMinMask}</p>
+                    <p id="minimumLength">${texts.min_length || "Minimum Length"}: ${texts.you_need_at_least || "You need at least"} ${service['min length']} ${texts.characters || "characters"}</p>
+                    <p id="minimumCharacters">${texts.min_characters || "Minimum characters"}: ${texts.you_need_at_least || "You need at least"} ${formattedMinMask}</p>
                     ${service['2fa'] == 1 
                         ? (texts.tfa_yes || "Provides two-factor authentication") 
                         : (texts.tfa_no || "Does not provide two-factor authentication")}
