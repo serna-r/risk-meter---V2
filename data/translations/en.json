@@ -46,6 +46,9 @@
     "suggestionScore4": "Great password! You are following best security practices.",
 
     "risk_indicators": "Risk Indicators",
+    "risk_of_data_exposure_title": "Risk of data exposure",
+    "user_login_protection_title": "User login protection",
+    "user_choices_title": "User's choices",
     "global_risk": "Global Risk indicator",
     "risk_legend": "Legend",
     "legend_very_small": "Very small risk",

@@ -46,6 +46,9 @@
     "suggestionScore4": "¡Gran contraseña! Estás siguiendo las mejores prácticas de seguridad.",
 
     "risk_indicators": "Indicadores de riesgo",
+    "risk_of_data_exposure_title": "Riesgo de Exposición de Datos",
+    "user_login_protection_title": "Protección de Inicio de Sesión",
+    "user_choices_title": "Opciones del Usuario",
     "global_risk": "Indicador de Riesgo Global",
     "risk_legend": "Leyenda",
     "legend_very_small": "Riesgo muy bajo",

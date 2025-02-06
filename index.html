@@ -48,7 +48,7 @@
         <div class="container">
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search Service...">
-                <div id="suggestions" class="suggestions-list"></div>
+                <!-- <div id="suggestions" class="suggestions-list"></div> -->
             </div>
 
             <!-- Service card -->
@@ -91,11 +91,22 @@
                 <div class="column">
                     <div class="card risk-indicators">
                         <h2 id="risk_indicators">Risk Indicators</h2>
-                        <p id="riskOfDataExposureIndicator"></p>
-                        <p id="serviceRiskIndicator"></p>
-                        <p id="userRiskIndicator"></p>
+                        <div class="indicator-item">
+                            <span id="risk_of_data_exposure_title"></span>
+                            <div class="indicator" id="riskOfDataExposureIndicator"></div>
+                        </div>
+                        <div class="indicator-item">
+                            <span id="user_login_protection_title"></span>
+                            <div class="indicator" id="serviceRiskIndicator"></div>                       
+                        </div>
+                        <div class="indicator-item">
+                            <span id="user_choices_title"></span>
+                            <div class="indicator" id="userRiskIndicator"></div>
+                        </div>
                     </div>
                 </div>
+
+
 
                 <!-- Global risk -->
                 <div class="column">
