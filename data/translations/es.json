@@ -38,6 +38,7 @@
     "veryStrong": "Muy Fuerte",
     "score": "Puntuación",
     "suggestions": "Sugerencias",
+    "password_policy_violation": "Tu contraseña no cumple con los requisitos mínimos",
     "goodPassword": "¡Buena contraseña!",
     "suggestionScore0": "Tu contraseña es demasiado débil. Usa una combinación de mayúsculas, minúsculas, números y símbolos. Evita palabras comunes.",
     "suggestionScore1": "Tu contraseña es débil. Considera agregar más caracteres y hacerla menos predecible.",

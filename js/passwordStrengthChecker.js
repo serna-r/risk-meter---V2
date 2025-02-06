@@ -30,6 +30,46 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.warn("Translations not loaded, using default English values.");
     }
 
+    // Function to check if password meets service policies
+    function meetsPasswordPolicies(password) {
+        const storedService = JSON.parse(sessionStorage.getItem('selectedService'));
+
+        if (!storedService) {
+            console.warn("No service selected. Password policies cannot be enforced.");
+            return true; // Allow passwords if no service is selected
+        }
+
+        const { "min length": minLength, "min mask": minMask, "2fa": requires2FA } = storedService;
+        let issues = [];
+
+        // Check minimum length
+        if (password.length < minLength) {
+            issues.push(`${texts["min_length"] || "Minimum Length"}: ${texts["you_need_at_least"] || "You need at least"} ${minLength} ${texts["characters"] || "characters"}`);
+        }
+
+        // Check character composition
+        const checks = {
+            l: /[a-z]/.test(password), // Lowercase
+            u: /[A-Z]/.test(password), // Uppercase
+            d: /\d/.test(password),    // Digit
+            s: /[\W_]/.test(password)  // Special Character
+        };
+
+        for (const charType of minMask.split('')) {
+            if (!checks[charType]) {
+                let charTypeText = {
+                    l: texts["lowercase_character"] || "one lowercase character",
+                    u: texts["uppercase_character"] || "one uppercase character",
+                    d: texts["decimal_character"] || "one decimal character",
+                    s: texts["special_character"] || "one special character"
+                };
+                issues.push(`${texts["min_characters"] || "Minimum characters"}: ${texts["you_need_at_least"] || "You need at least"} ${charTypeText[charType]}`);
+            }
+        }
+
+        return issues.length ? issues : true;
+    }
+
     passwordInput.addEventListener('input', () => {
         const password = passwordInput.value;
         const result = zxcvbn(password);
@@ -52,7 +92,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             texts["suggestionScore4"] || "Great password! You are following best security practices."
         ];
 
-        const finalFeedback = suggestions[score];
+        // Check if password meets service policies
+        const policyCheck = meetsPasswordPolicies(password);
+
+        if (policyCheck !== true) {
+            passwordScoreOutput.innerHTML = `
+                <strong style="color:red;">${texts["password_policy_violation"] || "Your password does not meet the service's security requirements:"}</strong><br> 
+                ${policyCheck.join("<br>")}
+            `;
+            return; // Stop execution to prevent showing strength and suggestions
+        }
+
+        let finalFeedback = suggestions[score];
 
         // Update score output with translated text
         passwordScoreOutput.innerHTML = `

@@ -100,6 +100,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             serviceRiskElement.textContent = service['Service Risk'].toFixed(2);
         }
 
+
+        // Store the service in the session
         sessionStorage.setItem('selectedService', JSON.stringify(service));
 
         if (typeof calculateAndUpdateRisks === "function") {
