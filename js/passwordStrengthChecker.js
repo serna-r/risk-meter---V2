@@ -143,8 +143,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <strong style="color:red;">${texts["password_policy_violation"] || "Your password does not meet the service's security requirements:"}</strong><br>
             `;
             return; // Stop execution to prevent showing strength and suggestions
-        } else {
-            calculateAndUpdateRisks();
         }
 
         // Reset colors if policies are met
@@ -158,5 +156,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             <strong>${texts["score"] || "Score"}: ${score} (${descriptions[score]})</strong><br><br>
             ${texts["suggestions"] || "Suggestions"}: ${finalFeedback}
         `;
+
+        // Update risks
+        calculateAndUpdateRisks();
     });
 });
