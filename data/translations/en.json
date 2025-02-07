@@ -1,6 +1,6 @@
 {
     "title": "Password Risk Meter",
-    "research_info": "This website, designed as part of the research project <a href='https://cosec.inf.uc3m.es/projects/apamciber/'><strong>APAMCiber</strong></a> (Attribution and Prevention of Threats with Impact on Multiple Relevant Groups in Cybersecurity), directed by Lorena González Manzano (lgmanzan@inf.uc3m.es), funded by INCIBE and conducted at Universidad Carlos III de Madrid, aims to validate the password risk meter developed for the project. No personal data is collected.",
+    "research_info": "This website, designed as part of the research project <a href='https://cosec.inf.uc3m.es/projects/apamciber/'><strong>APAMCiber</strong></a> (Attribution and Prevention of Threats with Impact on Multiple Relevant Groups in Cybersecurity), directed by Lorena González Manzano (lgmanzan@inf.uc3m.es), funded by INCIBE and conducted at Universidad Carlos III de Madrid, aims to validate the password risk meter developed for the project. <strong>NEITHER THE PASSWORD NOR ANY OTHER USER DATA IS COLLECTED.</strong>",
     "search_service": "Search service...",
     "no_services_found": "No services found",
     "error_fetching_services": "Error fetching services",
@@ -57,7 +57,7 @@
     "legend_big": "Big risk",
     "legend_very_big": "Very big risk",
 
-    "data_privacy_notice": "All data entered by the user is processed locally and no data is collected or stored.",
+    "data_privacy_notice": "All service names mentioned are purely fictional and for illustration purposes. Values do not reflect the actual security of the mentioned services. All data entered by the user is processed locally and no data is collected or stored.",
 
     "popup_title": "Welcome to Password Risk Meter",
     "popup_description": "Follow these steps to assess your risk:",
