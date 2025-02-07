@@ -1,7 +1,7 @@
 {
     "en": [
         {
-            "Website": "Digital tool service",
+            "Website": "AI web tool (e.g., ChatGPT)",
             "Type": "This service is an artificial inteligence that lets you have a conversation with it. The service has a subscription and collects minimal personal data such as name, surname, and email",
             "min mask": "l",
             "min length": 12,
@@ -10,7 +10,7 @@
             "Service Risk": 0.005
         },
         {
-            "Website": "Email service",
+            "Website": "Email service (e.g., Gmail)",
             "Type": "This is a usual email service with some storage capabilities. The service has a subscription and collects minimal personal data such as name, surname, and telephone number, also it stores personal messages",
             "min mask": "lds",
             "min length": 8,
@@ -19,7 +19,7 @@
             "Service Risk": 0.015
         },
         {
-            "Website": "Finance service",
+            "Website": "Financial service (e.g., Banco Santander)",
             "Type": "This service lets you store money and make payments through internet. The service stores money and collects multiple personal data such as name, surname, and telephone number and address",
             "min mask": "lud",
             "min length": 8,
@@ -28,7 +28,7 @@
             "Service Risk": 0.01
         },
         {
-            "Website": "Social network service A",
+            "Website": "Social network A (e.g., Facebook)",
             "Type": "It is a social network based on sharing photos with friends. The service  collects personal data such as name, surname, and telephone number, also it stores personal messages",
             "min mask": "ld",
             "min length": 6,
@@ -37,7 +37,7 @@
             "Service Risk": 0.02
         },
         {
-            "Website": "Social network service B",
+            "Website": "Social network B (e.g., TikTok)",
             "Type": "This is a forum like social network that lets you create posts and comment on them. The service  collects personal data such as name, surname, and telephone number, also it stores personal messages",
             "min mask": "l",
             "min length": 1,
@@ -48,7 +48,7 @@
     ],
     "es": [
         {
-            "Website": "Servicio de herramientas digitales",
+            "Website": "Herramienta web de IA (e.g., ChatGPT)",
             "Type": "Este servicio es una inteligencia artificial que te permite conversar con ella. El servicio tiene una suscripción y recopila datos personales mínimos como nombre, apellido y correo electrónico.",
             "min mask": "l",
             "min length": 12,
@@ -57,7 +57,7 @@
             "Service Risk": 0.005
         },
         {
-            "Website": "Servicio de correo electrónico",
+            "Website": "Correo electrónico (e.g., Gmail)",
             "Type": "Este es un servicio de correo electrónico habitual con algunas capacidades de almacenamiento. El servicio tiene una suscripción y recopila datos personales mínimos como nombre, apellido y número de teléfono, además almacena mensajes personales.",
             "min mask": "lds",
             "min length": 8,
@@ -66,7 +66,7 @@
             "Service Risk": 0.015
         },
         {
-            "Website": "Servicio financiero",
+            "Website": "Servicio financiero (e.g., Banco Papypal)",
             "Type": "Este servicio te permite almacenar dinero y realizar pagos a través de internet. El servicio almacena dinero y recopila múltiples datos personales como nombre, apellido, número de teléfono y dirección.",
             "min mask": "lud",
             "min length": 8,
@@ -75,7 +75,7 @@
             "Service Risk": 0.01
         },
         {
-            "Website": "Servicio de red social A",
+            "Website": "Red social A (e.g., Facebook)",
             "Type": "Es una red social basada en compartir fotos con amigos. El servicio recopila datos personales como nombre, apellido y número de teléfono, además almacena mensajes personales.",
             "min mask": "ld",
             "min length": 6,
@@ -84,7 +84,7 @@
             "Service Risk": 0.02
         },
         {
-            "Website": "Servicio de red social B",
+            "Website": "Red social B (e.g., TikTok)",
             "Type": "Esta es una red social tipo foro que te permite crear publicaciones y comentarlas. El servicio recopila datos personales como nombre, apellido y número de teléfono, además almacena mensajes personales.",
             "min mask": "l",
             "min length": 1,
