@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const popup = document.getElementById("instructionPopup");
-    const closePopupButton = document.getElementById("closePopup");
+    const closePopupButton = document.getElementById("popup_button");
     const openPopupButton = document.getElementById("openPopupButton");
     const popupLanguageSelector = document.getElementById("popupLanguageSelector");
     const langSwitchButton = document.getElementById("langSwitch");
