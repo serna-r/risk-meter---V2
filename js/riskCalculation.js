@@ -136,11 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // If a service is found, print it to the console
-        console.log("Selected Service:", storedService);
-
-
-
         const riskOfDataExposure = riskOfDataExposureElement
             ? parseFloat(riskOfDataExposureElement.textContent)
             : storedService['Dexp'] || DEFAULT_DATA_EXPOSURE_RISK;
