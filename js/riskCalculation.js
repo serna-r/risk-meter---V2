@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Default values for risks (used when elements are missing in the DOM)
     const DEFAULT_DATA_EXPOSURE_RISK = 0;
     const DEFAULT_SERVICE_RISK = 0;
-    const DEFAULT_USER_RISK = 0;
+    const DEFAULT_USER_RISK = 2;
 
     // Function to calculate User Risk
     function calculateUserRisk(passwordScore, passwordReusesValue) {
@@ -94,20 +94,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function calculateAndUpdateRisks() {
+        
+        // Function to reset the risk indicators
+        function resetRiskIndicators() {
+            if (dataExposureIndicator) dataExposureIndicator.style.backgroundColor = "grey";
+            if (serviceRiskIndicator) serviceRiskIndicator.style.backgroundColor = "grey";
+            if (userRiskIndicator) userRiskIndicator.style.backgroundColor = "grey";
+        
+            // Reset global risk bar
+            const riskBar = document.getElementById("globalRiskBar");
+            if (riskBar) {
+                riskBar.style.width = "0%";
+                riskBar.className = "risk-fill"; // Remove colors
+            }
+        
+            console.log("Risk indicators reset.");
+        }
+
         const password = passwordInput ? passwordInput.value : '';
         const passwordReusesValue = passwordReuses ? parseInt(passwordReuses.value) || 0 : 0;
+
+        // Retrieve password validity status from sessionStorage
+        const isPasswordValid = sessionStorage.getItem("passwordValid") === "true";
     
         // Get the password score
         const passwordScore = passwordInput ? zxcvbn(password).score : 0;
     
         // Calculate User Risk
-        const userRisk = calculateUserRisk(passwordScore, passwordReusesValue);
+        let userRisk = calculateUserRisk(passwordScore, passwordReusesValue);
         if (userRiskElement) {
             userRiskElement.textContent = userRisk.toFixed(2);
         }
     
-        // Retrieve service data from the session if necessary
-        const storedService = JSON.parse(sessionStorage.getItem('selectedService')) || {};
+        // Retrieve service data from sessionStorage
+        const storedService = JSON.parse(sessionStorage.getItem('selectedService'));
+
+        // Check if storedService is null or empty, and exit the function if so
+        if (!storedService || Object.keys(storedService).length === 0) {
+            console.warn("No service selected. Exiting function.");
+            resetRiskIndicators();
+            return;
+        }
+
+        // If a service is found, print it to the console
+        console.log("Selected Service:", storedService);
+
+
 
         const riskOfDataExposure = riskOfDataExposureElement
             ? parseFloat(riskOfDataExposureElement.textContent)
@@ -125,8 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (serviceRiskIndicator) {
             updateRiskIndicatorColor(serviceRisk, serviceRiskIndicator, 'serviceAuthentication');
         }
-    
-        if (userRiskIndicator) {
+
+        // Check if password is valid
+        if (!isPasswordValid) {
+            // If password is invalid, force user risk to 2
+            userRisk = DEFAULT_USER_RISK;
+            // Keep indicator grey
+            if (userRiskIndicator) {
+                userRiskIndicator.style.backgroundColor = 'grey';
+            }
+        } else if (userRiskIndicator) {
             updateRiskIndicatorColor(userRisk, userRiskIndicator, 'userLogin');
         }
     
@@ -144,6 +184,27 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('SR: ', serviceRisk)
         console.log('UR: ', userRisk)
         console.log('Global risk: ', globalRisk)
+
+
+        function resetRiskIndicators() {
+    if (riskOfDataExposureElement) riskOfDataExposureElement.textContent = "";
+    if (serviceRiskElement) serviceRiskElement.textContent = "";
+    if (userRiskElement) userRiskElement.textContent = "";
+    if (globalRiskElement) globalRiskElement.textContent = "";
+
+    if (dataExposureIndicator) dataExposureIndicator.style.backgroundColor = "grey";
+    if (serviceRiskIndicator) serviceRiskIndicator.style.backgroundColor = "grey";
+    if (userRiskIndicator) userRiskIndicator.style.backgroundColor = "grey";
+
+    // Reset global risk bar
+    const riskBar = document.getElementById("globalRiskBar");
+    if (riskBar) {
+        riskBar.style.width = "0%";
+        riskBar.className = "risk-fill"; // Remove colors
+    }
+
+    console.log("Risk indicators reset.");
+}
     }
     
 

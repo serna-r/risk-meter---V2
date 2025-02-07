@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const passwordInput = document.getElementById('password');
     const passwordScoreOutput = document.getElementById('passwordScore');
 
+    // Initialize validity to false
+    sessionStorage.setItem("passwordValid", "false");
+
     if (!passwordInput || !passwordScoreOutput) {
         console.warn("Password strength elements not found.");
         return;
@@ -95,6 +98,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Check if password meets service policies
         const policyCheck = meetsPasswordPolicies(password);
 
+        // Store the validity status in sessionStorage
+
+        sessionStorage.setItem("passwordValid", policyCheck === true);
+        console.log(`Is password valid?: ${policyCheck === true}`);
+
         // Reset policy colors
         const minLengthElement = document.getElementById("minimumLength");
         const minCharactersElement = document.getElementById("minimumCharacters");
@@ -135,6 +143,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <strong style="color:red;">${texts["password_policy_violation"] || "Your password does not meet the service's security requirements:"}</strong><br>
             `;
             return; // Stop execution to prevent showing strength and suggestions
+        } else {
+            calculateAndUpdateRisks();
         }
 
         // Reset colors if policies are met

@@ -20,6 +20,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function resetServiceCard() {
+        serviceCard.innerHTML = `
+            <h2 id="service-title">${texts["service"] || "Service"}</h2>
+            <div id="details">
+                <p>${texts["select_service"] || "Select a service to view its details"}</p>
+            </div>
+        `;
+    
+        if (riskOfDataExposureElement) {
+            riskOfDataExposureElement.textContent = ""; // Clear risk data
+        }
+        if (serviceRiskElement) {
+            serviceRiskElement.textContent = ""; // Clear service risk
+        }
+    
+        console.log("Service card reset to default.");
+    }
+
     // Load translations
     const texts = await loadTranslation(lang);
 
@@ -45,9 +63,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Event Listener for dropdown change
             dropdown.addEventListener('change', () => {
                 const selectedService = services.find(service => service.Website === dropdown.value);
-                if (selectedService) {
-                    showServiceDetails(selectedService, texts);
+
+                if (!selectedService) {
+                    console.warn("No service selected. Clearing sessionStorage.");
+                    sessionStorage.removeItem('selectedService'); // Clear storage if no service is selected
+                    resetServiceCard(); // Reset the service card to default
+                    calculateAndUpdateRisks();
+                    return;
                 }
+
+                showServiceDetails(selectedService, texts);
             });
         }
 
@@ -56,6 +81,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function showServiceDetails(service, texts) {
+
+        if (!service || Object.keys(service).length === 0) {
+            console.warn("Invalid service detected. Not storing in sessionStorage.");
+            sessionStorage.removeItem('selectedService'); // Ensure invalid data is not stored
+            return;
+        }
+
         function formatMinMask(minMask) {
             const maskMap = {
                 l: texts.lowercase_character || 'one lowercase character',
