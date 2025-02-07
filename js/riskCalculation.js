@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to calculate User Risk
     function calculateUserRisk(passwordScore, passwordReusesValue) {
-        const adjustedReuses = [0, 0.25, 0.35, 0.5][Math.min(passwordReusesValue - 1, 3)];
+        const adjustedReuses = [0, 0.1, 0.2, 0.5][Math.min(passwordReusesValue - 1, 3)];
         return (4 - passwordScore + adjustedReuses) * 2 / 4.5;
     }
 
